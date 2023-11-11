@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.directoriesListbox = new System.Windows.Forms.ListBox();
             this.logListbox = new System.Windows.Forms.ListBox();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.btnAddDirectory = new System.Windows.Forms.Button();
@@ -39,15 +37,9 @@
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClearLog = new System.Windows.Forms.Button();
             this.btnExportLog = new System.Windows.Forms.Button();
+            this.dg = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dg)).BeginInit();
             this.SuspendLayout();
-            // 
-            // directoriesListbox
-            // 
-            this.directoriesListbox.FormattingEnabled = true;
-            this.directoriesListbox.Location = new System.Drawing.Point(12, 12);
-            this.directoriesListbox.Name = "directoriesListbox";
-            this.directoriesListbox.Size = new System.Drawing.Size(412, 121);
-            this.directoriesListbox.TabIndex = 0;
             // 
             // logListbox
             // 
@@ -59,7 +51,7 @@
             // 
             // notifyIcon
             // 
-            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Icon = global::Watcher.Properties.Resources.Watcher;
             this.notifyIcon.Text = "Watcher";
             this.notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseClick);
             // 
@@ -123,11 +115,20 @@
             this.btnExportLog.UseVisualStyleBackColor = true;
             this.btnExportLog.Click += new System.EventHandler(this.btnExportLog_Click);
             // 
+            // dg
+            // 
+            this.dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dg.Location = new System.Drawing.Point(12, 12);
+            this.dg.Name = "dg";
+            this.dg.Size = new System.Drawing.Size(412, 121);
+            this.dg.TabIndex = 8;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(562, 452);
+            this.Controls.Add(this.dg);
             this.Controls.Add(this.btnExportLog);
             this.Controls.Add(this.btnClearLog);
             this.Controls.Add(this.btnMinimize);
@@ -135,21 +136,19 @@
             this.Controls.Add(this.btnRemoveDirectory);
             this.Controls.Add(this.btnAddDirectory);
             this.Controls.Add(this.logListbox);
-            this.Controls.Add(this.directoriesListbox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = global::Watcher.Properties.Resources.Watcher;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Watcher";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
+            ((System.ComponentModel.ISupportInitialize)(this.dg)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox directoriesListbox;
         private System.Windows.Forms.ListBox logListbox;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.Button btnAddDirectory;
@@ -158,6 +157,7 @@
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnClearLog;
         private System.Windows.Forms.Button btnExportLog;
+        private System.Windows.Forms.DataGridView dg;
     }
 }
 
