@@ -11,8 +11,17 @@ using System.Windows.Forms;
 
 namespace Watcher
 {
+    class DirectoryModel
+    {
+        public bool IsChecked { get; set; }
+        public bool IsActivated { get; set; }
+        public string Path { get; set; }
+    }
+
     public partial class MainForm : Form
     {
+        List<DirectoryModel> directoryModels;
+
         public MainForm()
         {
             InitializeComponent();
@@ -20,15 +29,17 @@ namespace Watcher
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            var watcher = new FileSystemWatcher(@"C:\Users\Cmack\Desktop");
-            watcher.Created += OnCreated;
+            directoryModels = new List<DirectoryModel>();
 
-            watcher.NotifyFilter = NotifyFilters.FileName;
-            watcher.Filter = "";
-            watcher.IncludeSubdirectories = true;
-            watcher.EnableRaisingEvents = true;
+            //var watcher = new FileSystemWatcher(@"C:\Users\Cmack\Desktop");
+            //watcher.Created += OnCreated;
 
-            watcher.SynchronizingObject = this;
+            //watcher.NotifyFilter = NotifyFilters.FileName;
+            //watcher.Filter = "";
+            //watcher.IncludeSubdirectories = true;
+            //watcher.EnableRaisingEvents = true;
+
+            //watcher.SynchronizingObject = this;
         }
 
         private void OnCreated(object sender, FileSystemEventArgs e)
@@ -57,6 +68,36 @@ namespace Watcher
             Show();
             this.WindowState = FormWindowState.Normal;
             notifyIcon.Visible = false;
+        }
+
+        private void btnAddDirectory_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRemoveDirectory_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnActivate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExportLog_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClearLog_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }
