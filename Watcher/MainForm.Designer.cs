@@ -117,6 +117,7 @@
             // 
             // dg
             // 
+            this.dg.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg.Location = new System.Drawing.Point(12, 12);
             this.dg.Name = "dg";
