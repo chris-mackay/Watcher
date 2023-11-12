@@ -14,7 +14,7 @@ namespace Watcher
 {
     public partial class MainForm : Form
     {
-        List<DirectoryModel> directoryModels;
+        List<WatcherModel> watcherModels;
         List<LogEntryModel> logEntryModels;
         MainForm mainForm;
 
@@ -25,7 +25,7 @@ namespace Watcher
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            directoryModels = new List<DirectoryModel>();
+            watcherModels = new List<WatcherModel>();
             logEntryModels = new List<LogEntryModel>();
             mainForm = this;
         }
@@ -84,7 +84,7 @@ namespace Watcher
             notifyIcon.Visible = false;
         }
 
-        private void btnAddDirectory_Click(object sender, EventArgs e)
+        private void btnAddWatcher_Click(object sender, EventArgs e)
         {
             CommonOpenFileDialog ofd = new CommonOpenFileDialog();
             ofd.DefaultDirectory = "C:\\";
@@ -93,32 +93,14 @@ namespace Watcher
 
             if (ofd.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                DirectoryModel model = new DirectoryModel();
-                model.IsActivated = false;
-                model.IsChecked = false;
-                model.Path = ofd.FileName;
+                WatcherModel model = new WatcherModel();
+                bool exists = watcherModels.Any(x => x.DirectoryPath == ofd.FileName);
 
-                directoryModels.Add(model);
-
-                dgDirectories.DataSource = null;
-                dgDirectories.DataSource = directoryModels;
-            }
-        }
-
-        private void btnRemoveDirectory_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnActivate_Click(object sender, EventArgs e)
-        {
-            List<DirectoryModel> models = (List<DirectoryModel>)mainForm.dgDirectories.DataSource;
-
-            foreach (DirectoryModel model in models)
-            {
-                if (model.IsChecked && model.IsActivated == false)
+                if (exists == false)
                 {
-                    var watcher = new FileSystemWatcher(model.Path);
+                    model.DirectoryPath = ofd.FileName;
+
+                    var watcher = new FileSystemWatcher(model.DirectoryPath);
                     watcher.Created += OnCreated;
                     watcher.Deleted += OnDeleted;
 
@@ -129,14 +111,23 @@ namespace Watcher
 
                     watcher.SynchronizingObject = this;
 
-                    model.IsActivated = true;
-                } 
-            }
+                    model.FileWatcher = watcher;
+                    watcherModels.Add(model);
 
-            TaskDialog td = new TaskDialog();
-            td.Caption = "Watcher";
-            td.InstructionText = "Directories added to Watcher";
-            td.Show();
+                    dgWatchers.DataSource = null;
+                    dgWatchers.DataSource = watcherModels;
+
+                    TaskDialog td = new TaskDialog();
+                    td.Caption = "Watcher";
+                    td.InstructionText = "Watcher added";
+                    td.Show(); 
+                }
+            }
+        }
+
+        private void btnRemoveWatcher_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void btnExportLog_Click(object sender, EventArgs e)
@@ -186,10 +177,9 @@ namespace Watcher
         public string FilePath { get; set; }
     }
 
-    class DirectoryModel
+    class WatcherModel
     {
-        public bool IsChecked { get; set; }
-        public bool IsActivated { get; set; }
-        public string Path { get; set; }
+        public string DirectoryPath { get; set; }
+        public FileSystemWatcher FileWatcher { get; set; }
     }
 }

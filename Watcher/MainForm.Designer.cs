@@ -30,15 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.btnAddDirectory = new System.Windows.Forms.Button();
-            this.btnRemoveDirectory = new System.Windows.Forms.Button();
-            this.btnActivate = new System.Windows.Forms.Button();
+            this.btnAddWatcher = new System.Windows.Forms.Button();
+            this.btnRemoveWatcher = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClearLog = new System.Windows.Forms.Button();
             this.btnExportLog = new System.Windows.Forms.Button();
-            this.dgDirectories = new System.Windows.Forms.DataGridView();
+            this.dgWatchers = new System.Windows.Forms.DataGridView();
             this.dgLog = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dgDirectories)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgWatchers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLog)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,38 +47,27 @@
             this.notifyIcon.Text = "Watcher";
             this.notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseClick);
             // 
-            // btnAddDirectory
+            // btnAddWatcher
             // 
-            this.btnAddDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddDirectory.Location = new System.Drawing.Point(430, 12);
-            this.btnAddDirectory.Name = "btnAddDirectory";
-            this.btnAddDirectory.Size = new System.Drawing.Size(120, 23);
-            this.btnAddDirectory.TabIndex = 2;
-            this.btnAddDirectory.Text = "Add Directory";
-            this.btnAddDirectory.UseVisualStyleBackColor = true;
-            this.btnAddDirectory.Click += new System.EventHandler(this.btnAddDirectory_Click);
+            this.btnAddWatcher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddWatcher.Location = new System.Drawing.Point(430, 12);
+            this.btnAddWatcher.Name = "btnAddWatcher";
+            this.btnAddWatcher.Size = new System.Drawing.Size(120, 23);
+            this.btnAddWatcher.TabIndex = 2;
+            this.btnAddWatcher.Text = "Add Watcher";
+            this.btnAddWatcher.UseVisualStyleBackColor = true;
+            this.btnAddWatcher.Click += new System.EventHandler(this.btnAddWatcher_Click);
             // 
-            // btnRemoveDirectory
+            // btnRemoveWatcher
             // 
-            this.btnRemoveDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoveDirectory.Location = new System.Drawing.Point(430, 41);
-            this.btnRemoveDirectory.Name = "btnRemoveDirectory";
-            this.btnRemoveDirectory.Size = new System.Drawing.Size(120, 23);
-            this.btnRemoveDirectory.TabIndex = 3;
-            this.btnRemoveDirectory.Text = "Remove Directory";
-            this.btnRemoveDirectory.UseVisualStyleBackColor = true;
-            this.btnRemoveDirectory.Click += new System.EventHandler(this.btnRemoveDirectory_Click);
-            // 
-            // btnActivate
-            // 
-            this.btnActivate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnActivate.Location = new System.Drawing.Point(430, 110);
-            this.btnActivate.Name = "btnActivate";
-            this.btnActivate.Size = new System.Drawing.Size(120, 23);
-            this.btnActivate.TabIndex = 4;
-            this.btnActivate.Text = "Activate Directories";
-            this.btnActivate.UseVisualStyleBackColor = true;
-            this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
+            this.btnRemoveWatcher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemoveWatcher.Location = new System.Drawing.Point(430, 41);
+            this.btnRemoveWatcher.Name = "btnRemoveWatcher";
+            this.btnRemoveWatcher.Size = new System.Drawing.Size(120, 23);
+            this.btnRemoveWatcher.TabIndex = 3;
+            this.btnRemoveWatcher.Text = "Remove Watcher";
+            this.btnRemoveWatcher.UseVisualStyleBackColor = true;
+            this.btnRemoveWatcher.Click += new System.EventHandler(this.btnRemoveWatcher_Click);
             // 
             // btnMinimize
             // 
@@ -114,28 +102,48 @@
             this.btnExportLog.UseVisualStyleBackColor = true;
             this.btnExportLog.Click += new System.EventHandler(this.btnExportLog_Click);
             // 
-            // dgDirectories
+            // dgWatchers
             // 
-            this.dgDirectories.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgWatchers.AllowUserToAddRows = false;
+            this.dgWatchers.AllowUserToDeleteRows = false;
+            this.dgWatchers.AllowUserToOrderColumns = true;
+            this.dgWatchers.AllowUserToResizeRows = false;
+            this.dgWatchers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgDirectories.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.dgDirectories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgDirectories.Location = new System.Drawing.Point(12, 12);
-            this.dgDirectories.Name = "dgDirectories";
-            this.dgDirectories.RowHeadersVisible = false;
-            this.dgDirectories.Size = new System.Drawing.Size(412, 121);
-            this.dgDirectories.TabIndex = 8;
+            this.dgWatchers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgWatchers.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgWatchers.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dgWatchers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgWatchers.ColumnHeadersVisible = false;
+            this.dgWatchers.Location = new System.Drawing.Point(12, 12);
+            this.dgWatchers.MultiSelect = false;
+            this.dgWatchers.Name = "dgWatchers";
+            this.dgWatchers.ReadOnly = true;
+            this.dgWatchers.RowHeadersVisible = false;
+            this.dgWatchers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgWatchers.Size = new System.Drawing.Size(412, 121);
+            this.dgWatchers.TabIndex = 8;
             // 
             // dgLog
             // 
+            this.dgLog.AllowUserToAddRows = false;
+            this.dgLog.AllowUserToDeleteRows = false;
+            this.dgLog.AllowUserToResizeRows = false;
             this.dgLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgLog.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgLog.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgLog.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgLog.ColumnHeadersVisible = false;
+            this.dgLog.Enabled = false;
             this.dgLog.Location = new System.Drawing.Point(12, 149);
+            this.dgLog.MultiSelect = false;
             this.dgLog.Name = "dgLog";
+            this.dgLog.ReadOnly = true;
             this.dgLog.RowHeadersVisible = false;
+            this.dgLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgLog.Size = new System.Drawing.Size(412, 291);
             this.dgLog.TabIndex = 9;
             // 
@@ -145,13 +153,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(562, 452);
             this.Controls.Add(this.dgLog);
-            this.Controls.Add(this.dgDirectories);
+            this.Controls.Add(this.dgWatchers);
             this.Controls.Add(this.btnExportLog);
             this.Controls.Add(this.btnClearLog);
             this.Controls.Add(this.btnMinimize);
-            this.Controls.Add(this.btnActivate);
-            this.Controls.Add(this.btnRemoveDirectory);
-            this.Controls.Add(this.btnAddDirectory);
+            this.Controls.Add(this.btnRemoveWatcher);
+            this.Controls.Add(this.btnAddWatcher);
             this.Icon = global::Watcher.Properties.Resources.Watcher;
             this.MinimumSize = new System.Drawing.Size(578, 491);
             this.Name = "MainForm";
@@ -159,7 +166,7 @@
             this.Text = "Watcher";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.dgDirectories)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgWatchers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLog)).EndInit();
             this.ResumeLayout(false);
 
@@ -167,13 +174,12 @@
 
         #endregion
         private System.Windows.Forms.NotifyIcon notifyIcon;
-        private System.Windows.Forms.Button btnAddDirectory;
-        private System.Windows.Forms.Button btnRemoveDirectory;
-        private System.Windows.Forms.Button btnActivate;
+        private System.Windows.Forms.Button btnAddWatcher;
+        private System.Windows.Forms.Button btnRemoveWatcher;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnClearLog;
         private System.Windows.Forms.Button btnExportLog;
-        private System.Windows.Forms.DataGridView dgDirectories;
+        private System.Windows.Forms.DataGridView dgWatchers;
         private System.Windows.Forms.DataGridView dgLog;
     }
 }
