@@ -141,7 +141,31 @@ namespace Watcher
 
         private void btnExportLog_Click(object sender, EventArgs e)
         {
+            List<LogEntryModel> models = (List<LogEntryModel>)mainForm.dgLog.DataSource;
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "Specify file to save the log";
+            sfd.DefaultExt = ".csv";
+            sfd.InitialDirectory = "C:\\";
 
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter sw = new StreamWriter(sfd.FileName);
+
+                foreach (LogEntryModel model in models)
+                {
+                    string entry = $"{model.Alert},{model.EntryTime},{model.FilePath}";
+                    sw.WriteLine(entry);
+                }
+
+                sw.Dispose();
+                sw = null;
+
+                TaskDialog td = new TaskDialog();
+                td.Caption = "Watcher";
+                td.InstructionText = "Log saved";
+                td.Text = sfd.FileName;
+                td.Show();
+            }
         }
 
         private void btnClearLog_Click(object sender, EventArgs e)
