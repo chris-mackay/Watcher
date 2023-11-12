@@ -15,6 +15,7 @@ namespace Watcher
     public partial class MainForm : Form
     {
         List<DirectoryModel> directoryModels;
+        List<LogEntryModel> logEntryModels;
         MainForm mainForm;
 
         public MainForm()
@@ -25,6 +26,7 @@ namespace Watcher
         private void MainForm_Load(object sender, EventArgs e)
         {
             directoryModels = new List<DirectoryModel>();
+            logEntryModels = new List<LogEntryModel>();
             mainForm = this;
         }
 
@@ -37,7 +39,14 @@ namespace Watcher
             notifyIcon.BalloonTipText = e.FullPath;
             notifyIcon.ShowBalloonTip(1000);
 
-            logListbox.Items.Add($"File added : {DateTime.Now} : {e.FullPath}");
+            LogEntryModel logEntry = new LogEntryModel();
+            logEntry.Alert = "Added";
+            logEntry.EntryTime = DateTime.Now;
+            logEntry.FilePath = e.FullPath;
+
+            logEntryModels.Add(logEntry);
+            dgLog.DataSource = null;
+            dgLog.DataSource = logEntryModels;
         }
 
         private void OnDeleted(object sender, FileSystemEventArgs e)
@@ -49,7 +58,14 @@ namespace Watcher
             notifyIcon.BalloonTipText = e.FullPath;
             notifyIcon.ShowBalloonTip(1000);
 
-            logListbox.Items.Add($"File deleted : {DateTime.Now} : {e.FullPath}");
+            LogEntryModel logEntry = new LogEntryModel();
+            logEntry.Alert = "Deleted";
+            logEntry.EntryTime = DateTime.Now;
+            logEntry.FilePath = e.FullPath;
+
+            logEntryModels.Add(logEntry);
+            dgLog.DataSource = null;
+            dgLog.DataSource = logEntryModels;
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -84,8 +100,8 @@ namespace Watcher
 
                 directoryModels.Add(model);
 
-                dg.DataSource = null;
-                dg.DataSource = directoryModels;
+                dgDirectories.DataSource = null;
+                dgDirectories.DataSource = directoryModels;
             }
         }
 
@@ -96,7 +112,7 @@ namespace Watcher
 
         private void btnActivate_Click(object sender, EventArgs e)
         {
-            List<DirectoryModel> models = (List<DirectoryModel>)mainForm.dg.DataSource;
+            List<DirectoryModel> models = (List<DirectoryModel>)mainForm.dgDirectories.DataSource;
 
             foreach (DirectoryModel model in models)
             {
@@ -116,6 +132,11 @@ namespace Watcher
                     model.IsActivated = true;
                 } 
             }
+
+            TaskDialog td = new TaskDialog();
+            td.Caption = "Watcher";
+            td.InstructionText = "Directories added to Watcher";
+            td.Show();
         }
 
         private void btnExportLog_Click(object sender, EventArgs e)
@@ -132,6 +153,13 @@ namespace Watcher
         {
             this.WindowState = FormWindowState.Minimized;
         }
+    }
+
+    class LogEntryModel
+    {
+        public string Alert { get; set; }
+        public DateTime EntryTime { get; set; }
+        public string FilePath { get; set; }
     }
 
     class DirectoryModel
