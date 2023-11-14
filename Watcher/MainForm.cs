@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -130,22 +131,31 @@ namespace Watcher
             foreach (DataGridViewRow row in dgWatchers.SelectedRows)
             {
                 WatcherModel model = row.DataBoundItem as WatcherModel;
-                watcherModels.Remove(model);
-                model.FileWatcher = null;
+                
+                TaskDialog taskDialog = new TaskDialog();
+                taskDialog.Caption = "Watcher";
+                taskDialog.InstructionText = "Remove watcher?";
+                taskDialog.Text = model.DirectoryPath;
+                taskDialog.StandardButtons = TaskDialogStandardButtons.Yes | TaskDialogStandardButtons.No;
+
+                if (taskDialog.Show() == TaskDialogResult.Yes)
+                {
+                    watcherModels.Remove(model);
+                    model.FileWatcher.Dispose();
+
+                    dgWatchers.DataSource = null;
+                    dgWatchers.DataSource = watcherModels;
+
+                    TaskDialog td = new TaskDialog();
+                    td.Caption = "Watcher";
+                    td.InstructionText = "Watcher removed";
+                    td.Show(); 
+                }
             }
-
-            dgWatchers.DataSource = null;
-            dgWatchers.DataSource = watcherModels;
-
-            TaskDialog td = new TaskDialog();
-            td.Caption = "Watcher";
-            td.InstructionText = "Watcher removed";
-            td.Show();
         }
 
         private void btnExportLog_Click(object sender, EventArgs e)
         {
-            List<LogEntryModel> models = (List<LogEntryModel>)mainForm.dgLog.DataSource;
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Title = "Specify file to save the log";
             sfd.DefaultExt = ".csv";
@@ -153,16 +163,7 @@ namespace Watcher
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                StreamWriter sw = new StreamWriter(sfd.FileName);
-
-                foreach (LogEntryModel model in models)
-                {
-                    string entry = $"{model.Alert},{model.EntryTime},{model.FilePath}";
-                    sw.WriteLine(entry);
-                }
-
-                sw.Dispose();
-                sw = null;
+                ExportLog(sfd.FileName);
 
                 TaskDialog td = new TaskDialog();
                 td.Caption = "Watcher";
@@ -172,10 +173,52 @@ namespace Watcher
             }
         }
 
+        private void ExportLog(string file)
+        {
+            StreamWriter sw = new StreamWriter(file);
+
+            foreach (LogEntryModel model in logEntryModels)
+            {
+                string entry = $"{model.Alert},{model.EntryTime},{model.FilePath}";
+                sw.WriteLine(entry);
+            }
+
+            sw.Dispose();
+            sw = null;
+        }
+
         private void btnClearLog_Click(object sender, EventArgs e)
         {
-            logEntryModels.Clear();
-            dgLog.DataSource = null;
+            TaskDialog td = new TaskDialog();
+            td.InstructionText = "Export before clear?";
+            td.StandardButtons = TaskDialogStandardButtons.Yes | TaskDialogStandardButtons.No;
+
+            if (td.Show() == TaskDialogResult.Yes)
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Title = "Specify file to save the log";
+                sfd.DefaultExt = ".csv";
+                sfd.InitialDirectory = "C:\\";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    ExportLog(sfd.FileName);
+
+                    logEntryModels.Clear();
+                    dgLog.DataSource = null;
+
+                    TaskDialog taskDialog = new TaskDialog();
+                    taskDialog.Caption = "Watcher";
+                    taskDialog.InstructionText = "Log saved and cleared";
+                    taskDialog.Text = sfd.FileName;
+                    taskDialog.Show();
+                }
+            }
+            else
+            {
+                logEntryModels.Clear();
+                dgLog.DataSource = null;
+            }
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
