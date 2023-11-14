@@ -127,7 +127,20 @@ namespace Watcher
 
         private void btnRemoveWatcher_Click(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in dgWatchers.SelectedRows)
+            {
+                WatcherModel model = row.DataBoundItem as WatcherModel;
+                watcherModels.Remove(model);
+                model.FileWatcher = null;
+            }
 
+            dgWatchers.DataSource = null;
+            dgWatchers.DataSource = watcherModels;
+
+            TaskDialog td = new TaskDialog();
+            td.Caption = "Watcher";
+            td.InstructionText = "Watcher removed";
+            td.Show();
         }
 
         private void btnExportLog_Click(object sender, EventArgs e)
@@ -161,7 +174,8 @@ namespace Watcher
 
         private void btnClearLog_Click(object sender, EventArgs e)
         {
-
+            logEntryModels.Clear();
+            dgLog.DataSource = null;
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
