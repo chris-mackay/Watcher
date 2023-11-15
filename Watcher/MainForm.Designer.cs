@@ -54,6 +54,7 @@
             this.btnAddWatcher.Name = "btnAddWatcher";
             this.btnAddWatcher.Size = new System.Drawing.Size(120, 23);
             this.btnAddWatcher.TabIndex = 2;
+            this.btnAddWatcher.TabStop = false;
             this.btnAddWatcher.Text = "Add Watcher";
             this.btnAddWatcher.UseVisualStyleBackColor = true;
             this.btnAddWatcher.Click += new System.EventHandler(this.btnAddWatcher_Click);
@@ -65,6 +66,7 @@
             this.btnRemoveWatcher.Name = "btnRemoveWatcher";
             this.btnRemoveWatcher.Size = new System.Drawing.Size(120, 23);
             this.btnRemoveWatcher.TabIndex = 3;
+            this.btnRemoveWatcher.TabStop = false;
             this.btnRemoveWatcher.Text = "Remove Watcher";
             this.btnRemoveWatcher.UseVisualStyleBackColor = true;
             this.btnRemoveWatcher.Click += new System.EventHandler(this.btnRemoveWatcher_Click);
@@ -76,6 +78,7 @@
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(120, 23);
             this.btnMinimize.TabIndex = 5;
+            this.btnMinimize.TabStop = false;
             this.btnMinimize.Text = "Minimize to Tray";
             this.btnMinimize.UseVisualStyleBackColor = true;
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
@@ -87,6 +90,7 @@
             this.btnClearLog.Name = "btnClearLog";
             this.btnClearLog.Size = new System.Drawing.Size(120, 23);
             this.btnClearLog.TabIndex = 6;
+            this.btnClearLog.TabStop = false;
             this.btnClearLog.Text = "Clear Log";
             this.btnClearLog.UseVisualStyleBackColor = true;
             this.btnClearLog.Click += new System.EventHandler(this.btnClearLog_Click);
@@ -98,6 +102,7 @@
             this.btnExportLog.Name = "btnExportLog";
             this.btnExportLog.Size = new System.Drawing.Size(120, 23);
             this.btnExportLog.TabIndex = 7;
+            this.btnExportLog.TabStop = false;
             this.btnExportLog.Text = "Export Log";
             this.btnExportLog.UseVisualStyleBackColor = true;
             this.btnExportLog.Click += new System.EventHandler(this.btnExportLog_Click);
@@ -124,6 +129,7 @@
             this.dgWatchers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgWatchers.Size = new System.Drawing.Size(412, 121);
             this.dgWatchers.TabIndex = 8;
+            this.dgWatchers.TabStop = false;
             // 
             // dgLog
             // 
@@ -146,6 +152,7 @@
             this.dgLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgLog.Size = new System.Drawing.Size(412, 291);
             this.dgLog.TabIndex = 9;
+            this.dgLog.TabStop = false;
             // 
             // MainForm
             // 

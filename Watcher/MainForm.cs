@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
@@ -48,6 +42,7 @@ namespace Watcher
             logEntryModels.Add(logEntry);
             dgLog.DataSource = null;
             dgLog.DataSource = logEntryModels;
+            dgLog.ClearSelection();
         }
 
         private void OnDeleted(object sender, FileSystemEventArgs e)
@@ -67,6 +62,7 @@ namespace Watcher
             logEntryModels.Add(logEntry);
             dgLog.DataSource = null;
             dgLog.DataSource = logEntryModels;
+            dgLog.ClearSelection();
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -117,11 +113,7 @@ namespace Watcher
 
                     dgWatchers.DataSource = null;
                     dgWatchers.DataSource = watcherModels;
-
-                    TaskDialog td = new TaskDialog();
-                    td.Caption = "Watcher";
-                    td.InstructionText = "Watcher added";
-                    td.Show(); 
+                    dgWatchers.ClearSelection();
                 }
             }
         }
@@ -145,31 +137,33 @@ namespace Watcher
 
                     dgWatchers.DataSource = null;
                     dgWatchers.DataSource = watcherModels;
-
-                    TaskDialog td = new TaskDialog();
-                    td.Caption = "Watcher";
-                    td.InstructionText = "Watcher removed";
-                    td.Show(); 
+                    dgWatchers.ClearSelection();
                 }
             }
         }
 
         private void btnExportLog_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Title = "Specify file to save the log";
-            sfd.DefaultExt = ".csv";
-            sfd.InitialDirectory = "C:\\";
-
-            if (sfd.ShowDialog() == DialogResult.OK)
+            if (logEntryModels.Count > 0)
             {
-                ExportLog(sfd.FileName);
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "csv files (*.csv)|*.csv";
+                sfd.Title = "Specify file to save the log";
+                sfd.FileName = "WatcherLog";
+                sfd.DefaultExt = ".csv";
+                sfd.InitialDirectory = "C:\\";
+                sfd.AddExtension = true;
 
-                TaskDialog td = new TaskDialog();
-                td.Caption = "Watcher";
-                td.InstructionText = "Log saved";
-                td.Text = sfd.FileName;
-                td.Show();
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    ExportLog(sfd.FileName);
+
+                    TaskDialog td = new TaskDialog();
+                    td.Caption = "Watcher";
+                    td.InstructionText = "Log saved";
+                    td.Text = sfd.FileName;
+                    td.Show();
+                } 
             }
         }
 
@@ -189,35 +183,39 @@ namespace Watcher
 
         private void btnClearLog_Click(object sender, EventArgs e)
         {
-            TaskDialog td = new TaskDialog();
-            td.InstructionText = "Export before clear?";
-            td.StandardButtons = TaskDialogStandardButtons.Yes | TaskDialogStandardButtons.No;
-
-            if (td.Show() == TaskDialogResult.Yes)
+            if (logEntryModels.Count > 0)
             {
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Title = "Specify file to save the log";
-                sfd.DefaultExt = ".csv";
-                sfd.InitialDirectory = "C:\\";
+                TaskDialog td = new TaskDialog();
+                td.Caption = "Watcher";
+                td.InstructionText = "Export before clear?";
+                td.StandardButtons = TaskDialogStandardButtons.Yes | TaskDialogStandardButtons.No;
 
-                if (sfd.ShowDialog() == DialogResult.OK)
+                if (td.Show() == TaskDialogResult.Yes)
                 {
-                    ExportLog(sfd.FileName);
+                    SaveFileDialog sfd = new SaveFileDialog();
+                    sfd.Title = "Specify file to save the log";
+                    sfd.DefaultExt = ".csv";
+                    sfd.InitialDirectory = "C:\\";
 
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        ExportLog(sfd.FileName);
+
+                        logEntryModels.Clear();
+                        dgLog.DataSource = null;
+
+                        TaskDialog taskDialog = new TaskDialog();
+                        taskDialog.Caption = "Watcher";
+                        taskDialog.InstructionText = "Log saved and cleared";
+                        taskDialog.Text = sfd.FileName;
+                        taskDialog.Show();
+                    }
+                }
+                else
+                {
                     logEntryModels.Clear();
                     dgLog.DataSource = null;
-
-                    TaskDialog taskDialog = new TaskDialog();
-                    taskDialog.Caption = "Watcher";
-                    taskDialog.InstructionText = "Log saved and cleared";
-                    taskDialog.Text = sfd.FileName;
-                    taskDialog.Show();
-                }
-            }
-            else
-            {
-                logEntryModels.Clear();
-                dgLog.DataSource = null;
+                } 
             }
         }
 
