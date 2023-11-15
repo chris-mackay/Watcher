@@ -193,9 +193,12 @@ namespace Watcher
                 if (td.Show() == TaskDialogResult.Yes)
                 {
                     SaveFileDialog sfd = new SaveFileDialog();
+                    sfd.Filter = "csv files (*.csv)|*.csv";
                     sfd.Title = "Specify file to save the log";
+                    sfd.FileName = "WatcherLog";
                     sfd.DefaultExt = ".csv";
                     sfd.InitialDirectory = "C:\\";
+                    sfd.AddExtension = true;
 
                     if (sfd.ShowDialog() == DialogResult.OK)
                     {
