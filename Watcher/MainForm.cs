@@ -90,14 +90,14 @@ namespace Watcher
 
             if (ofd.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                WatcherModel model = new WatcherModel();
+                WatcherModel watcherModel = new WatcherModel();
                 bool exists = watcherModels.Any(x => x.DirectoryPath == ofd.FileName);
 
                 if (exists == false)
                 {
-                    model.DirectoryPath = ofd.FileName;
+                    watcherModel.DirectoryPath = ofd.FileName;
 
-                    var watcher = new FileSystemWatcher(model.DirectoryPath);
+                    var watcher = new FileSystemWatcher(watcherModel.DirectoryPath);
                     watcher.Created += OnCreated;
                     watcher.Deleted += OnDeleted;
 
@@ -108,8 +108,8 @@ namespace Watcher
 
                     watcher.SynchronizingObject = this;
 
-                    model.FileWatcher = watcher;
-                    watcherModels.Add(model);
+                    watcherModel.FileWatcher = watcher;
+                    watcherModels.Add(watcherModel);
 
                     dgWatchers.DataSource = null;
                     dgWatchers.DataSource = watcherModels;
