@@ -18,6 +18,17 @@ namespace Watcher
             InitializeComponent();
         }
 
+        private void FormatWatcherGrid()
+        {
+            dgWatchers.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgWatchers.Columns[1].Visible = false;
+        }
+
+        private void FormatLogGrid()
+        {
+            dgLog.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             watcherModels = new List<WatcherModel>();
@@ -42,6 +53,7 @@ namespace Watcher
             logEntryModels.Add(logEntry);
             dgLog.DataSource = null;
             dgLog.DataSource = logEntryModels;
+            FormatLogGrid();
             dgLog.ClearSelection();
         }
 
@@ -62,6 +74,7 @@ namespace Watcher
             logEntryModels.Add(logEntry);
             dgLog.DataSource = null;
             dgLog.DataSource = logEntryModels;
+            FormatLogGrid();
             dgLog.ClearSelection();
         }
 
@@ -113,6 +126,7 @@ namespace Watcher
 
                     dgWatchers.DataSource = null;
                     dgWatchers.DataSource = watcherModels;
+                    FormatWatcherGrid();
                     dgWatchers.ClearSelection();
                 }
             }
@@ -137,6 +151,7 @@ namespace Watcher
 
                     dgWatchers.DataSource = null;
                     dgWatchers.DataSource = watcherModels;
+                    FormatWatcherGrid();
                     dgWatchers.ClearSelection();
                 }
             }
@@ -188,9 +203,11 @@ namespace Watcher
                 TaskDialog td = new TaskDialog();
                 td.Caption = "Watcher";
                 td.InstructionText = "Export before clear?";
-                td.StandardButtons = TaskDialogStandardButtons.Yes | TaskDialogStandardButtons.No;
+                td.StandardButtons = TaskDialogStandardButtons.Yes | TaskDialogStandardButtons.No | TaskDialogStandardButtons.Cancel;
 
-                if (td.Show() == TaskDialogResult.Yes)
+                TaskDialogResult result = td.Show();
+
+                if (result == TaskDialogResult.Yes)
                 {
                     SaveFileDialog sfd = new SaveFileDialog();
                     sfd.Filter = "csv files (*.csv)|*.csv";
@@ -214,7 +231,7 @@ namespace Watcher
                         taskDialog.Show();
                     }
                 }
-                else
+                else if (result == TaskDialogResult.No)
                 {
                     logEntryModels.Clear();
                     dgLog.DataSource = null;
