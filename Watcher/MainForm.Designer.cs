@@ -37,6 +37,7 @@
             this.btnExportLog = new System.Windows.Forms.Button();
             this.dgWatchers = new System.Windows.Forms.DataGridView();
             this.dgLog = new System.Windows.Forms.DataGridView();
+            this.cbxShowNofitifcations = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgWatchers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLog)).BeginInit();
             this.SuspendLayout();
@@ -154,11 +155,23 @@
             this.dgLog.TabIndex = 9;
             this.dgLog.TabStop = false;
             // 
+            // cbxShowNofitifcations
+            // 
+            this.cbxShowNofitifcations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxShowNofitifcations.AutoSize = true;
+            this.cbxShowNofitifcations.Location = new System.Drawing.Point(430, 116);
+            this.cbxShowNofitifcations.Name = "cbxShowNofitifcations";
+            this.cbxShowNofitifcations.Size = new System.Drawing.Size(114, 17);
+            this.cbxShowNofitifcations.TabIndex = 10;
+            this.cbxShowNofitifcations.Text = "Show Nofifications";
+            this.cbxShowNofitifcations.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(562, 452);
+            this.Controls.Add(this.cbxShowNofitifcations);
             this.Controls.Add(this.dgLog);
             this.Controls.Add(this.dgWatchers);
             this.Controls.Add(this.btnExportLog);
@@ -176,6 +189,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgWatchers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLog)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -188,6 +202,7 @@
         private System.Windows.Forms.Button btnExportLog;
         private System.Windows.Forms.DataGridView dgWatchers;
         private System.Windows.Forms.DataGridView dgLog;
+        private System.Windows.Forms.CheckBox cbxShowNofitifcations;
     }
 }
 

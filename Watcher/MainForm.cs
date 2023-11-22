@@ -38,12 +38,17 @@ namespace Watcher
 
         private void OnCreated(object sender, FileSystemEventArgs e)
         {
-            notifyIcon.Icon = Properties.Resources.Watcher;
-            notifyIcon.Text = "Watcher";
-            notifyIcon.Visible = true;
-            notifyIcon.BalloonTipTitle = "File added";
-            notifyIcon.BalloonTipText = e.FullPath;
-            notifyIcon.ShowBalloonTip(1000);
+            bool showNotifications = cbxShowNofitifcations.Checked;
+
+            if (showNotifications)
+            {
+                notifyIcon.Icon = Properties.Resources.Watcher;
+                notifyIcon.Text = "Watcher";
+                notifyIcon.Visible = true;
+                notifyIcon.BalloonTipTitle = "File added";
+                notifyIcon.BalloonTipText = e.FullPath;
+                notifyIcon.ShowBalloonTip(1000); 
+            }
 
             LogEntryModel logEntry = new LogEntryModel();
             logEntry.Alert = "Added";
@@ -59,12 +64,17 @@ namespace Watcher
 
         private void OnDeleted(object sender, FileSystemEventArgs e)
         {
-            notifyIcon.Icon = Properties.Resources.Watcher;
-            notifyIcon.Text = "Watcher";
-            notifyIcon.Visible = true;
-            notifyIcon.BalloonTipTitle = "File deleted";
-            notifyIcon.BalloonTipText = e.FullPath;
-            notifyIcon.ShowBalloonTip(1000);
+            bool showNotifications = cbxShowNofitifcations.Checked;
+
+            if (showNotifications)
+            {
+                notifyIcon.Icon = Properties.Resources.Watcher;
+                notifyIcon.Text = "Watcher";
+                notifyIcon.Visible = true;
+                notifyIcon.BalloonTipTitle = "File deleted";
+                notifyIcon.BalloonTipText = e.FullPath;
+                notifyIcon.ShowBalloonTip(1000); 
+            }
 
             LogEntryModel logEntry = new LogEntryModel();
             logEntry.Alert = "Deleted";
