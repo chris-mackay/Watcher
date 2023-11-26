@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.btnAddWatcher = new System.Windows.Forms.Button();
             this.btnRemoveWatcher = new System.Windows.Forms.Button();
@@ -47,7 +48,7 @@
             // 
             // notifyIcon
             // 
-            this.notifyIcon.Icon = global::Watcher.Properties.Resources.Watcher;
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "Watcher";
             this.notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseClick);
             // 
@@ -221,7 +222,7 @@
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnRemoveWatcher);
             this.Controls.Add(this.btnAddWatcher);
-            this.Icon = global::Watcher.Properties.Resources.Watcher;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(578, 491);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
