@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -261,6 +262,53 @@ namespace Watcher
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnCopyFilePath_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgLog.SelectedRows)
+            {
+                LogEntryModel model = row.DataBoundItem as LogEntryModel;
+
+                Clipboard.Clear();
+                Clipboard.SetText(model.FilePath);
+
+                TaskDialog td = new TaskDialog();
+                td.Caption = "Watcher";
+                td.InstructionText = "Filepath copied";
+                td.Text = model.FilePath;
+                td.Show();
+            }
+        }
+
+        private void btnCopyFolderPath_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgWatchers.SelectedRows)
+            {
+                WatcherModel model = row.DataBoundItem as WatcherModel;
+
+                Clipboard.Clear();
+                Clipboard.SetText(model.DirectoryPath);
+
+                TaskDialog td = new TaskDialog();
+                td.Caption = "Watcher";
+                td.InstructionText = "Directory path copied";
+                td.Text = model.DirectoryPath;
+                td.Show();
+            }
+        }
+
+        private void btnGoToFolder_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgWatchers.SelectedRows)
+            {
+                WatcherModel model = row.DataBoundItem as WatcherModel;
+
+                if (Directory.Exists(model.DirectoryPath))
+                {
+                    Process.Start(model.DirectoryPath); 
+                }
+            }
         }
     }
 

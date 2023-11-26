@@ -38,6 +38,9 @@
             this.dgWatchers = new System.Windows.Forms.DataGridView();
             this.dgLog = new System.Windows.Forms.DataGridView();
             this.cbxShowNofitifcations = new System.Windows.Forms.CheckBox();
+            this.btnCopyFilePath = new System.Windows.Forms.Button();
+            this.btnCopyFolderpath = new System.Windows.Forms.Button();
+            this.btnGoToFolder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgWatchers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLog)).BeginInit();
             this.SuspendLayout();
@@ -128,7 +131,7 @@
             this.dgWatchers.ReadOnly = true;
             this.dgWatchers.RowHeadersVisible = false;
             this.dgWatchers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgWatchers.Size = new System.Drawing.Size(412, 121);
+            this.dgWatchers.Size = new System.Drawing.Size(412, 163);
             this.dgWatchers.TabIndex = 8;
             this.dgWatchers.TabStop = false;
             // 
@@ -145,13 +148,13 @@
             this.dgLog.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgLog.ColumnHeadersVisible = false;
-            this.dgLog.Location = new System.Drawing.Point(12, 149);
+            this.dgLog.Location = new System.Drawing.Point(12, 181);
             this.dgLog.MultiSelect = false;
             this.dgLog.Name = "dgLog";
             this.dgLog.ReadOnly = true;
             this.dgLog.RowHeadersVisible = false;
             this.dgLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgLog.Size = new System.Drawing.Size(412, 291);
+            this.dgLog.Size = new System.Drawing.Size(412, 259);
             this.dgLog.TabIndex = 9;
             this.dgLog.TabStop = false;
             // 
@@ -159,18 +162,57 @@
             // 
             this.cbxShowNofitifcations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxShowNofitifcations.AutoSize = true;
-            this.cbxShowNofitifcations.Location = new System.Drawing.Point(430, 116);
+            this.cbxShowNofitifcations.Location = new System.Drawing.Point(430, 158);
             this.cbxShowNofitifcations.Name = "cbxShowNofitifcations";
             this.cbxShowNofitifcations.Size = new System.Drawing.Size(114, 17);
             this.cbxShowNofitifcations.TabIndex = 10;
             this.cbxShowNofitifcations.Text = "Show Nofifications";
             this.cbxShowNofitifcations.UseVisualStyleBackColor = true;
             // 
+            // btnCopyFilePath
+            // 
+            this.btnCopyFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCopyFilePath.Location = new System.Drawing.Point(430, 330);
+            this.btnCopyFilePath.Name = "btnCopyFilePath";
+            this.btnCopyFilePath.Size = new System.Drawing.Size(120, 23);
+            this.btnCopyFilePath.TabIndex = 11;
+            this.btnCopyFilePath.TabStop = false;
+            this.btnCopyFilePath.Text = "Copy File Path";
+            this.btnCopyFilePath.UseVisualStyleBackColor = true;
+            this.btnCopyFilePath.Click += new System.EventHandler(this.btnCopyFilePath_Click);
+            // 
+            // btnCopyFolderpath
+            // 
+            this.btnCopyFolderpath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCopyFolderpath.Location = new System.Drawing.Point(430, 70);
+            this.btnCopyFolderpath.Name = "btnCopyFolderpath";
+            this.btnCopyFolderpath.Size = new System.Drawing.Size(120, 23);
+            this.btnCopyFolderpath.TabIndex = 12;
+            this.btnCopyFolderpath.TabStop = false;
+            this.btnCopyFolderpath.Text = "Copy Folder Path";
+            this.btnCopyFolderpath.UseVisualStyleBackColor = true;
+            this.btnCopyFolderpath.Click += new System.EventHandler(this.btnCopyFolderPath_Click);
+            // 
+            // btnGoToFolder
+            // 
+            this.btnGoToFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGoToFolder.Location = new System.Drawing.Point(430, 99);
+            this.btnGoToFolder.Name = "btnGoToFolder";
+            this.btnGoToFolder.Size = new System.Drawing.Size(120, 23);
+            this.btnGoToFolder.TabIndex = 13;
+            this.btnGoToFolder.TabStop = false;
+            this.btnGoToFolder.Text = "Go to Folder";
+            this.btnGoToFolder.UseVisualStyleBackColor = true;
+            this.btnGoToFolder.Click += new System.EventHandler(this.btnGoToFolder_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(562, 452);
+            this.Controls.Add(this.btnGoToFolder);
+            this.Controls.Add(this.btnCopyFolderpath);
+            this.Controls.Add(this.btnCopyFilePath);
             this.Controls.Add(this.cbxShowNofitifcations);
             this.Controls.Add(this.dgLog);
             this.Controls.Add(this.dgWatchers);
@@ -203,6 +245,9 @@
         private System.Windows.Forms.DataGridView dgWatchers;
         private System.Windows.Forms.DataGridView dgLog;
         private System.Windows.Forms.CheckBox cbxShowNofitifcations;
+        private System.Windows.Forms.Button btnCopyFilePath;
+        private System.Windows.Forms.Button btnCopyFolderpath;
+        private System.Windows.Forms.Button btnGoToFolder;
     }
 }
 
