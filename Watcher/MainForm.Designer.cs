@@ -112,7 +112,7 @@
             // 
             this.dgWatchers.AllowUserToAddRows = false;
             this.dgWatchers.AllowUserToDeleteRows = false;
-            this.dgWatchers.AllowUserToOrderColumns = true;
+            this.dgWatchers.AllowUserToResizeColumns = false;
             this.dgWatchers.AllowUserToResizeRows = false;
             this.dgWatchers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -136,6 +136,7 @@
             // 
             this.dgLog.AllowUserToAddRows = false;
             this.dgLog.AllowUserToDeleteRows = false;
+            this.dgLog.AllowUserToResizeColumns = false;
             this.dgLog.AllowUserToResizeRows = false;
             this.dgLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -144,7 +145,6 @@
             this.dgLog.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgLog.ColumnHeadersVisible = false;
-            this.dgLog.Enabled = false;
             this.dgLog.Location = new System.Drawing.Point(12, 149);
             this.dgLog.MultiSelect = false;
             this.dgLog.Name = "dgLog";

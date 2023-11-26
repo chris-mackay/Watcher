@@ -100,8 +100,17 @@ namespace Watcher
         private void notifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
             Show();
+
             this.WindowState = FormWindowState.Normal;
             notifyIcon.Visible = false;
+
+            dgWatchers.DataSource = null;
+            dgWatchers.DataSource = watcherModels;
+            FormatWatcherGrid();
+
+            dgLog.DataSource = null;
+            dgLog.DataSource = logEntryModels;
+            FormatLogGrid();
         }
 
         private void btnAddWatcher_Click(object sender, EventArgs e)
