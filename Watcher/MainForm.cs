@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -11,8 +12,8 @@ namespace Watcher
 {
     public partial class MainForm : Form
     {
-        List<WatcherModel> watcherModels;
-        List<LogEntryModel> logEntryModels;
+        BindingList<WatcherModel> watcherModels;
+        BindingList<LogEntryModel> logEntryModels;
         MainForm mainForm;
 
         public MainForm()
@@ -35,8 +36,8 @@ namespace Watcher
         {
             //this.Icon = new Icon(Properties.Resources.Watcher, SystemInformation.SmallIconSize);
             //this.notifyIcon.Icon = new Icon(Properties.Resources.Watcher, SystemInformation.SmallIconSize);
-            watcherModels = new List<WatcherModel>();
-            logEntryModels = new List<LogEntryModel>();
+            watcherModels = new BindingList<WatcherModel>();
+            logEntryModels = new BindingList<LogEntryModel>();
             mainForm = this;
         }
 
