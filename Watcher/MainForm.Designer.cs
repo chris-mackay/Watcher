@@ -1,4 +1,6 @@
-﻿namespace Watcher
+﻿using System.Windows.Forms;
+
+namespace Watcher
 {
     partial class MainForm
     {

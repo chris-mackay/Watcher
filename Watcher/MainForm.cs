@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -32,6 +33,8 @@ namespace Watcher
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //this.Icon = new Icon(Properties.Resources.Watcher, SystemInformation.SmallIconSize);
+            //this.notifyIcon.Icon = new Icon(Properties.Resources.Watcher, SystemInformation.SmallIconSize);
             watcherModels = new List<WatcherModel>();
             logEntryModels = new List<LogEntryModel>();
             mainForm = this;
@@ -43,7 +46,7 @@ namespace Watcher
 
             if (showNotifications)
             {
-                notifyIcon.Icon = Properties.Resources.Watcher;
+                //notifyIcon.Icon = new Icon(Properties.Resources.Watcher, SystemInformation.SmallIconSize);
                 notifyIcon.Text = "Watcher";
                 notifyIcon.Visible = true;
                 notifyIcon.BalloonTipTitle = "File added";
@@ -69,7 +72,7 @@ namespace Watcher
 
             if (showNotifications)
             {
-                notifyIcon.Icon = Properties.Resources.Watcher;
+                //notifyIcon.Icon = new Icon(Properties.Resources.Watcher, SystemInformation.SmallIconSize);
                 notifyIcon.Text = "Watcher";
                 notifyIcon.Visible = true;
                 notifyIcon.BalloonTipTitle = "File deleted";
