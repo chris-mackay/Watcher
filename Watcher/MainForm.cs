@@ -302,7 +302,7 @@ namespace Watcher
             }
         }
 
-        private void btnGoToFolder_Click(object sender, EventArgs e)
+        private void btnGoToWatcherFolder_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dgWatchers.SelectedRows)
             {
@@ -311,6 +311,19 @@ namespace Watcher
                 if (Directory.Exists(model.DirectoryPath))
                 {
                     Process.Start(model.DirectoryPath); 
+                }
+            }
+        }
+
+        private void btnGoToLogFolder_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgLog.SelectedRows)
+            {
+                LogEntryModel model = row.DataBoundItem as LogEntryModel;
+
+                if (Directory.Exists(Path.GetDirectoryName(model.FilePath)))
+                {
+                    Process.Start(Path.GetDirectoryName(model.FilePath));
                 }
             }
         }

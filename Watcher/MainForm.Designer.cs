@@ -43,7 +43,8 @@ namespace Watcher
             this.cbxShowNofitifcations = new System.Windows.Forms.CheckBox();
             this.btnCopyFilePath = new System.Windows.Forms.Button();
             this.btnCopyFolderpath = new System.Windows.Forms.Button();
-            this.btnGoToFolder = new System.Windows.Forms.Button();
+            this.btnGoToWatcherFolder = new System.Windows.Forms.Button();
+            this.btnGoToLogFolder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgWatchers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLog)).BeginInit();
             this.SuspendLayout();
@@ -196,24 +197,37 @@ namespace Watcher
             this.btnCopyFolderpath.UseVisualStyleBackColor = true;
             this.btnCopyFolderpath.Click += new System.EventHandler(this.btnCopyFolderPath_Click);
             // 
-            // btnGoToFolder
+            // btnGoToWatcherFolder
             // 
-            this.btnGoToFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGoToFolder.Location = new System.Drawing.Point(430, 99);
-            this.btnGoToFolder.Name = "btnGoToFolder";
-            this.btnGoToFolder.Size = new System.Drawing.Size(120, 23);
-            this.btnGoToFolder.TabIndex = 13;
-            this.btnGoToFolder.TabStop = false;
-            this.btnGoToFolder.Text = "Go to Folder";
-            this.btnGoToFolder.UseVisualStyleBackColor = true;
-            this.btnGoToFolder.Click += new System.EventHandler(this.btnGoToFolder_Click);
+            this.btnGoToWatcherFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGoToWatcherFolder.Location = new System.Drawing.Point(430, 99);
+            this.btnGoToWatcherFolder.Name = "btnGoToWatcherFolder";
+            this.btnGoToWatcherFolder.Size = new System.Drawing.Size(120, 23);
+            this.btnGoToWatcherFolder.TabIndex = 13;
+            this.btnGoToWatcherFolder.TabStop = false;
+            this.btnGoToWatcherFolder.Text = "Go to Folder";
+            this.btnGoToWatcherFolder.UseVisualStyleBackColor = true;
+            this.btnGoToWatcherFolder.Click += new System.EventHandler(this.btnGoToWatcherFolder_Click);
+            // 
+            // btnGoToLogFolder
+            // 
+            this.btnGoToLogFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGoToLogFolder.Location = new System.Drawing.Point(430, 301);
+            this.btnGoToLogFolder.Name = "btnGoToLogFolder";
+            this.btnGoToLogFolder.Size = new System.Drawing.Size(120, 23);
+            this.btnGoToLogFolder.TabIndex = 14;
+            this.btnGoToLogFolder.TabStop = false;
+            this.btnGoToLogFolder.Text = "Go to Folder";
+            this.btnGoToLogFolder.UseVisualStyleBackColor = true;
+            this.btnGoToLogFolder.Click += new System.EventHandler(this.btnGoToLogFolder_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(562, 452);
-            this.Controls.Add(this.btnGoToFolder);
+            this.Controls.Add(this.btnGoToLogFolder);
+            this.Controls.Add(this.btnGoToWatcherFolder);
             this.Controls.Add(this.btnCopyFolderpath);
             this.Controls.Add(this.btnCopyFilePath);
             this.Controls.Add(this.cbxShowNofitifcations);
@@ -250,7 +264,8 @@ namespace Watcher
         private System.Windows.Forms.CheckBox cbxShowNofitifcations;
         private System.Windows.Forms.Button btnCopyFilePath;
         private System.Windows.Forms.Button btnCopyFolderpath;
-        private System.Windows.Forms.Button btnGoToFolder;
+        private System.Windows.Forms.Button btnGoToWatcherFolder;
+        private Button btnGoToLogFolder;
     }
 }
 
