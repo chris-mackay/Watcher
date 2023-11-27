@@ -120,8 +120,7 @@ namespace Watcher
             this.dgWatchers.AllowUserToDeleteRows = false;
             this.dgWatchers.AllowUserToResizeColumns = false;
             this.dgWatchers.AllowUserToResizeRows = false;
-            this.dgWatchers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgWatchers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgWatchers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgWatchers.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
@@ -144,7 +143,8 @@ namespace Watcher
             this.dgLog.AllowUserToDeleteRows = false;
             this.dgLog.AllowUserToResizeColumns = false;
             this.dgLog.AllowUserToResizeRows = false;
-            this.dgLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgLog.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgLog.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
@@ -163,7 +163,7 @@ namespace Watcher
             // 
             // cbxShowNofitifcations
             // 
-            this.cbxShowNofitifcations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxShowNofitifcations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxShowNofitifcations.AutoSize = true;
             this.cbxShowNofitifcations.Location = new System.Drawing.Point(430, 158);
             this.cbxShowNofitifcations.Name = "cbxShowNofitifcations";
