@@ -34,8 +34,6 @@ namespace Watcher
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //this.Icon = new Icon(Properties.Resources.Watcher, SystemInformation.SmallIconSize);
-            //this.notifyIcon.Icon = new Icon(Properties.Resources.Watcher, SystemInformation.SmallIconSize);
             watcherModels = new BindingList<WatcherModel>();
             logEntryModels = new BindingList<LogEntryModel>();
             mainForm = this;
@@ -47,7 +45,6 @@ namespace Watcher
 
             if (showNotifications)
             {
-                //notifyIcon.Icon = new Icon(Properties.Resources.Watcher, SystemInformation.SmallIconSize);
                 notifyIcon.Text = "Watcher";
                 notifyIcon.Visible = true;
                 notifyIcon.BalloonTipTitle = "File added";
@@ -73,7 +70,6 @@ namespace Watcher
 
             if (showNotifications)
             {
-                //notifyIcon.Icon = new Icon(Properties.Resources.Watcher, SystemInformation.SmallIconSize);
                 notifyIcon.Text = "Watcher";
                 notifyIcon.Visible = true;
                 notifyIcon.BalloonTipTitle = "File deleted";
@@ -310,7 +306,17 @@ namespace Watcher
 
                 if (Directory.Exists(model.DirectoryPath))
                 {
-                    Process.Start(model.DirectoryPath); 
+                    try
+                    {
+                        Process.Start(model.DirectoryPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        TaskDialog td = new TaskDialog();
+                        td.Caption = "Watcher";
+                        td.InstructionText = "Error opening folder";
+                        td.Text = ex.Message;
+                    }
                 }
             }
         }
@@ -323,9 +329,25 @@ namespace Watcher
 
                 if (Directory.Exists(Path.GetDirectoryName(model.FilePath)))
                 {
-                    Process.Start(Path.GetDirectoryName(model.FilePath));
+                    try
+                    {
+                        Process.Start(Path.GetDirectoryName(model.FilePath));
+                    }
+                    catch (Exception ex)
+                    {
+                        TaskDialog td = new TaskDialog();
+                        td.Caption = "Watcher";
+                        td.InstructionText = "Error opening folder";
+                        td.Text = ex.Message;
+                    }
                 }
             }
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            frmSettings settings = new frmSettings();
+            settings.ShowDialog();
         }
     }
 

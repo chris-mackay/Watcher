@@ -45,6 +45,7 @@ namespace Watcher
             this.btnCopyFolderpath = new System.Windows.Forms.Button();
             this.btnGoToWatcherFolder = new System.Windows.Forms.Button();
             this.btnGoToLogFolder = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgWatchers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLog)).BeginInit();
             this.SuspendLayout();
@@ -58,7 +59,7 @@ namespace Watcher
             // btnAddWatcher
             // 
             this.btnAddWatcher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddWatcher.Location = new System.Drawing.Point(430, 12);
+            this.btnAddWatcher.Location = new System.Drawing.Point(544, 12);
             this.btnAddWatcher.Name = "btnAddWatcher";
             this.btnAddWatcher.Size = new System.Drawing.Size(120, 23);
             this.btnAddWatcher.TabIndex = 2;
@@ -70,7 +71,7 @@ namespace Watcher
             // btnRemoveWatcher
             // 
             this.btnRemoveWatcher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoveWatcher.Location = new System.Drawing.Point(430, 41);
+            this.btnRemoveWatcher.Location = new System.Drawing.Point(544, 41);
             this.btnRemoveWatcher.Name = "btnRemoveWatcher";
             this.btnRemoveWatcher.Size = new System.Drawing.Size(120, 23);
             this.btnRemoveWatcher.TabIndex = 3;
@@ -82,7 +83,7 @@ namespace Watcher
             // btnMinimize
             // 
             this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMinimize.Location = new System.Drawing.Point(430, 417);
+            this.btnMinimize.Location = new System.Drawing.Point(544, 496);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(120, 23);
             this.btnMinimize.TabIndex = 5;
@@ -94,7 +95,7 @@ namespace Watcher
             // btnClearLog
             // 
             this.btnClearLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClearLog.Location = new System.Drawing.Point(430, 388);
+            this.btnClearLog.Location = new System.Drawing.Point(544, 467);
             this.btnClearLog.Name = "btnClearLog";
             this.btnClearLog.Size = new System.Drawing.Size(120, 23);
             this.btnClearLog.TabIndex = 6;
@@ -106,7 +107,7 @@ namespace Watcher
             // btnExportLog
             // 
             this.btnExportLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportLog.Location = new System.Drawing.Point(430, 359);
+            this.btnExportLog.Location = new System.Drawing.Point(544, 438);
             this.btnExportLog.Name = "btnExportLog";
             this.btnExportLog.Size = new System.Drawing.Size(120, 23);
             this.btnExportLog.TabIndex = 7;
@@ -134,7 +135,7 @@ namespace Watcher
             this.dgWatchers.ReadOnly = true;
             this.dgWatchers.RowHeadersVisible = false;
             this.dgWatchers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgWatchers.Size = new System.Drawing.Size(412, 163);
+            this.dgWatchers.Size = new System.Drawing.Size(526, 219);
             this.dgWatchers.TabIndex = 8;
             this.dgWatchers.TabStop = false;
             // 
@@ -152,13 +153,13 @@ namespace Watcher
             this.dgLog.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgLog.ColumnHeadersVisible = false;
-            this.dgLog.Location = new System.Drawing.Point(12, 181);
+            this.dgLog.Location = new System.Drawing.Point(12, 237);
             this.dgLog.MultiSelect = false;
             this.dgLog.Name = "dgLog";
             this.dgLog.ReadOnly = true;
             this.dgLog.RowHeadersVisible = false;
             this.dgLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgLog.Size = new System.Drawing.Size(412, 259);
+            this.dgLog.Size = new System.Drawing.Size(526, 282);
             this.dgLog.TabIndex = 9;
             this.dgLog.TabStop = false;
             // 
@@ -166,7 +167,7 @@ namespace Watcher
             // 
             this.cbxShowNofitifcations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxShowNofitifcations.AutoSize = true;
-            this.cbxShowNofitifcations.Location = new System.Drawing.Point(430, 158);
+            this.cbxShowNofitifcations.Location = new System.Drawing.Point(544, 214);
             this.cbxShowNofitifcations.Name = "cbxShowNofitifcations";
             this.cbxShowNofitifcations.Size = new System.Drawing.Size(114, 17);
             this.cbxShowNofitifcations.TabIndex = 10;
@@ -176,7 +177,7 @@ namespace Watcher
             // btnCopyFilePath
             // 
             this.btnCopyFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCopyFilePath.Location = new System.Drawing.Point(430, 330);
+            this.btnCopyFilePath.Location = new System.Drawing.Point(544, 409);
             this.btnCopyFilePath.Name = "btnCopyFilePath";
             this.btnCopyFilePath.Size = new System.Drawing.Size(120, 23);
             this.btnCopyFilePath.TabIndex = 11;
@@ -188,7 +189,7 @@ namespace Watcher
             // btnCopyFolderpath
             // 
             this.btnCopyFolderpath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCopyFolderpath.Location = new System.Drawing.Point(430, 70);
+            this.btnCopyFolderpath.Location = new System.Drawing.Point(544, 70);
             this.btnCopyFolderpath.Name = "btnCopyFolderpath";
             this.btnCopyFolderpath.Size = new System.Drawing.Size(120, 23);
             this.btnCopyFolderpath.TabIndex = 12;
@@ -200,7 +201,7 @@ namespace Watcher
             // btnGoToWatcherFolder
             // 
             this.btnGoToWatcherFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGoToWatcherFolder.Location = new System.Drawing.Point(430, 99);
+            this.btnGoToWatcherFolder.Location = new System.Drawing.Point(544, 99);
             this.btnGoToWatcherFolder.Name = "btnGoToWatcherFolder";
             this.btnGoToWatcherFolder.Size = new System.Drawing.Size(120, 23);
             this.btnGoToWatcherFolder.TabIndex = 13;
@@ -212,7 +213,7 @@ namespace Watcher
             // btnGoToLogFolder
             // 
             this.btnGoToLogFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGoToLogFolder.Location = new System.Drawing.Point(430, 301);
+            this.btnGoToLogFolder.Location = new System.Drawing.Point(544, 380);
             this.btnGoToLogFolder.Name = "btnGoToLogFolder";
             this.btnGoToLogFolder.Size = new System.Drawing.Size(120, 23);
             this.btnGoToLogFolder.TabIndex = 14;
@@ -221,11 +222,22 @@ namespace Watcher
             this.btnGoToLogFolder.UseVisualStyleBackColor = true;
             this.btnGoToLogFolder.Click += new System.EventHandler(this.btnGoToLogFolder_Click);
             // 
+            // btnSettings
+            // 
+            this.btnSettings.Location = new System.Drawing.Point(544, 128);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(120, 23);
+            this.btnSettings.TabIndex = 15;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(562, 452);
+            this.ClientSize = new System.Drawing.Size(676, 531);
+            this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnGoToLogFolder);
             this.Controls.Add(this.btnGoToWatcherFolder);
             this.Controls.Add(this.btnCopyFolderpath);
@@ -266,6 +278,7 @@ namespace Watcher
         private System.Windows.Forms.Button btnCopyFolderpath;
         private System.Windows.Forms.Button btnGoToWatcherFolder;
         private Button btnGoToLogFolder;
+        private Button btnSettings;
     }
 }
 
