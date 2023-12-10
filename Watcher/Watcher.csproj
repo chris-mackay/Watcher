@@ -76,6 +76,7 @@
     <Compile Include="frmSettings.Designer.cs">
       <DependentUpon>frmSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

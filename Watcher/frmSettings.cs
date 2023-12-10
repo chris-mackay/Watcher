@@ -26,7 +26,7 @@ namespace Watcher
         {
             if (Settings.Default.Extensions != null && Settings.Default.Extensions != string.Empty)
             {
-                extensions = ConvertCSVToList(Settings.Default.Extensions);
+                extensions = Helpers.ConvertCSVToList(Settings.Default.Extensions);
                 lstExtensions.DataSource = null;
                 lstExtensions.DataSource = extensions;
             }
@@ -96,7 +96,7 @@ namespace Watcher
         {
             if (lstExtensions.Items.Count > 0)
             {
-                Settings.Default.Extensions = ConvertListToCSV(extensions);
+                Settings.Default.Extensions = Helpers.ConvertListToCSV(extensions);
                 Settings.Default.Save(); 
             }
         }
@@ -104,28 +104,6 @@ namespace Watcher
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private string ConvertListToCSV(List<string> list)
-        {
-            string csv = string.Empty;
-
-            StringBuilder sb = new StringBuilder();
-            list.ForEach(x => sb.Append($"{x},"));
-
-            csv = sb.ToString().TrimEnd(',');
-
-            return csv;
-        }
-
-        private List<string> ConvertCSVToList(string csv)
-        {
-            List<string> list = new List<string>();
-            string[] line = csv.Split(',');
-
-            foreach (string s in line) { list.Add(s); }
-
-            return list;
         }
     }
 }

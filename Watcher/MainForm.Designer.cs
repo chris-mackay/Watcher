@@ -224,6 +224,7 @@ namespace Watcher
             // 
             // btnSettings
             // 
+            this.btnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSettings.Location = new System.Drawing.Point(544, 128);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(120, 23);

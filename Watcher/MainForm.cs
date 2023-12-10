@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
@@ -23,8 +24,9 @@ namespace Watcher
 
         private void FormatWatcherGrid()
         {
-            dgWatchers.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgWatchers.Columns[1].Visible = false;
+            dgWatchers.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgWatchers.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgWatchers.Columns[2].Visible = false;
         }
 
         private void FormatLogGrid()
@@ -120,43 +122,36 @@ namespace Watcher
 
             if (addWatcher.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Hello");
+                bool exists = watcherModels.Any(x => x.DirectoryPath == addWatcher.txtDirectory.Text && x.Extension == addWatcher.cbExtensions.SelectedItem.ToString());
+
+                if (!exists)
+                {
+                    bool noFilter = addWatcher.ckbNoFilter.Checked;
+
+                    WatcherModel watcherModel = new WatcherModel();
+                    watcherModel.DirectoryPath = addWatcher.txtDirectory.Text;
+                    watcherModel.Extension = addWatcher.cbExtensions.Text;
+
+                    var watcher = new FileSystemWatcher(watcherModel.DirectoryPath);
+                    watcher.Created += OnCreated;
+                    watcher.Deleted += OnDeleted;
+
+                    watcher.NotifyFilter = NotifyFilters.FileName;
+                    watcher.Filter = $"*{watcherModel.Extension}";
+                    watcher.IncludeSubdirectories = true;
+                    watcher.EnableRaisingEvents = true;
+
+                    watcher.SynchronizingObject = this;
+
+                    watcherModel.FileWatcher = watcher;
+                    watcherModels.Add(watcherModel);
+
+                    dgWatchers.DataSource = null;
+                    dgWatchers.DataSource = watcherModels;
+                    FormatWatcherGrid();
+                    dgWatchers.ClearSelection();
+                }
             }
-
-            //CommonOpenFileDialog ofd = new CommonOpenFileDialog();
-            //ofd.DefaultDirectory = "C:\\";
-            //ofd.Title = "Navigate to the directory to add it to the watcher";
-            //ofd.IsFolderPicker = true;
-
-            //if (ofd.ShowDialog() == CommonFileDialogResult.Ok)
-            //{
-            //    WatcherModel watcherModel = new WatcherModel();
-            //    bool exists = watcherModels.Any(x => x.DirectoryPath == ofd.FileName);
-
-            //    if (exists == false)
-            //    {
-            //        watcherModel.DirectoryPath = ofd.FileName;
-
-            //        var watcher = new FileSystemWatcher(watcherModel.DirectoryPath);
-            //        watcher.Created += OnCreated;
-            //        watcher.Deleted += OnDeleted;
-
-            //        watcher.NotifyFilter = NotifyFilters.FileName;
-            //        watcher.Filter = "";
-            //        watcher.IncludeSubdirectories = true;
-            //        watcher.EnableRaisingEvents = true;
-
-            //        watcher.SynchronizingObject = this;
-
-            //        watcherModel.FileWatcher = watcher;
-            //        watcherModels.Add(watcherModel);
-
-            //        dgWatchers.DataSource = null;
-            //        dgWatchers.DataSource = watcherModels;
-            //        FormatWatcherGrid();
-            //        dgWatchers.ClearSelection();
-            //    }
-            //}
         }
 
         private void btnRemoveWatcher_Click(object sender, EventArgs e)
@@ -311,19 +306,17 @@ namespace Watcher
             {
                 WatcherModel model = row.DataBoundItem as WatcherModel;
 
-                if (Directory.Exists(model.DirectoryPath))
+                try
                 {
-                    try
-                    {
-                        Process.Start(model.DirectoryPath);
-                    }
-                    catch (Exception ex)
-                    {
-                        TaskDialog td = new TaskDialog();
-                        td.Caption = "Watcher";
-                        td.InstructionText = "Error opening folder";
-                        td.Text = ex.Message;
-                    }
+                    Process.Start(model.DirectoryPath);
+                }
+                catch (Exception ex)
+                {
+                    TaskDialog td = new TaskDialog();
+                    td.Caption = "Watcher";
+                    td.InstructionText = "Error opening folder";
+                    td.Text = ex.Message;
+                    td.Show();
                 }
             }
         }
@@ -334,19 +327,17 @@ namespace Watcher
             {
                 LogEntryModel model = row.DataBoundItem as LogEntryModel;
 
-                if (Directory.Exists(Path.GetDirectoryName(model.FilePath)))
+                try
                 {
-                    try
-                    {
-                        Process.Start(Path.GetDirectoryName(model.FilePath));
-                    }
-                    catch (Exception ex)
-                    {
-                        TaskDialog td = new TaskDialog();
-                        td.Caption = "Watcher";
-                        td.InstructionText = "Error opening folder";
-                        td.Text = ex.Message;
-                    }
+                    Process.Start(Path.GetDirectoryName(model.FilePath));
+                }
+                catch (Exception ex)
+                {
+                    TaskDialog td = new TaskDialog();
+                    td.Caption = "Watcher";
+                    td.InstructionText = "Error opening folder";
+                    td.Text = ex.Message;
+                    td.Show();
                 }
             }
         }
@@ -367,8 +358,8 @@ namespace Watcher
 
     class WatcherModel
     {
+        public string Extension { get; set; }
         public string DirectoryPath { get; set; }
         public FileSystemWatcher FileWatcher { get; set; }
-        public string Extension { get; set; }
     }
 }

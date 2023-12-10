@@ -32,7 +32,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtDirectory = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbExtensions = new System.Windows.Forms.ComboBox();
             this.lblBrowseFolder = new System.Windows.Forms.Label();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.lblExtension = new System.Windows.Forms.Label();
@@ -67,14 +67,14 @@
             this.txtDirectory.Size = new System.Drawing.Size(352, 20);
             this.txtDirectory.TabIndex = 2;
             // 
-            // comboBox1
+            // cbExtensions
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 135);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(138, 21);
-            this.comboBox1.TabIndex = 3;
+            this.cbExtensions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbExtensions.FormattingEnabled = true;
+            this.cbExtensions.Location = new System.Drawing.Point(12, 135);
+            this.cbExtensions.Name = "cbExtensions";
+            this.cbExtensions.Size = new System.Drawing.Size(138, 21);
+            this.cbExtensions.TabIndex = 3;
             // 
             // lblBrowseFolder
             // 
@@ -93,6 +93,7 @@
             this.btnBrowse.TabIndex = 5;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // lblExtension
             // 
@@ -112,6 +113,7 @@
             this.ckbNoFilter.TabIndex = 7;
             this.ckbNoFilter.Text = "No filter";
             this.ckbNoFilter.UseVisualStyleBackColor = true;
+            this.ckbNoFilter.CheckedChanged += new System.EventHandler(this.ckbNoFilter_CheckedChanged);
             // 
             // frmAddWatcher
             // 
@@ -122,7 +124,7 @@
             this.Controls.Add(this.lblExtension);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.lblBrowseFolder);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbExtensions);
             this.Controls.Add(this.txtDirectory);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnCancel);
@@ -134,6 +136,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Watcher";
+            this.Load += new System.EventHandler(this.frmAddWatcher_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,11 +146,11 @@
 
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox txtDirectory;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label lblBrowseFolder;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.Label lblExtension;
-        private System.Windows.Forms.CheckBox ckbNoFilter;
+        public System.Windows.Forms.TextBox txtDirectory;
+        public System.Windows.Forms.ComboBox cbExtensions;
+        public System.Windows.Forms.CheckBox ckbNoFilter;
     }
 }
