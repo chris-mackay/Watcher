@@ -40,6 +40,7 @@
             this.txtExtension.Name = "txtExtension";
             this.txtExtension.Size = new System.Drawing.Size(290, 20);
             this.txtExtension.TabIndex = 0;
+            this.txtExtension.TextChanged += new System.EventHandler(this.txtExtension_TextChanged);
             // 
             // btnCancel
             // 
@@ -47,17 +48,18 @@
             this.btnCancel.Location = new System.Drawing.Point(227, 56);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 1;
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Enabled = false;
             this.btnOK.Location = new System.Drawing.Point(146, 56);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 2;
+            this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             // 

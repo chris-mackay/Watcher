@@ -16,5 +16,17 @@ namespace Watcher
         {
             InitializeComponent();
         }
+
+        private void txtExtension_TextChanged(object sender, EventArgs e)
+        {
+            if (txtExtension.Text == string.Empty)
+            {
+                btnOK.Enabled = false;
+            }
+            else
+            {
+                btnOK.Enabled = true;
+            }
+        }
     }
 }

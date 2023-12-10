@@ -62,8 +62,7 @@ namespace Watcher
             this.btnAddWatcher.Location = new System.Drawing.Point(544, 12);
             this.btnAddWatcher.Name = "btnAddWatcher";
             this.btnAddWatcher.Size = new System.Drawing.Size(120, 23);
-            this.btnAddWatcher.TabIndex = 2;
-            this.btnAddWatcher.TabStop = false;
+            this.btnAddWatcher.TabIndex = 1;
             this.btnAddWatcher.Text = "Add Watcher";
             this.btnAddWatcher.UseVisualStyleBackColor = true;
             this.btnAddWatcher.Click += new System.EventHandler(this.btnAddWatcher_Click);
@@ -74,8 +73,7 @@ namespace Watcher
             this.btnRemoveWatcher.Location = new System.Drawing.Point(544, 41);
             this.btnRemoveWatcher.Name = "btnRemoveWatcher";
             this.btnRemoveWatcher.Size = new System.Drawing.Size(120, 23);
-            this.btnRemoveWatcher.TabIndex = 3;
-            this.btnRemoveWatcher.TabStop = false;
+            this.btnRemoveWatcher.TabIndex = 2;
             this.btnRemoveWatcher.Text = "Remove Watcher";
             this.btnRemoveWatcher.UseVisualStyleBackColor = true;
             this.btnRemoveWatcher.Click += new System.EventHandler(this.btnRemoveWatcher_Click);
@@ -86,8 +84,7 @@ namespace Watcher
             this.btnMinimize.Location = new System.Drawing.Point(544, 496);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(120, 23);
-            this.btnMinimize.TabIndex = 5;
-            this.btnMinimize.TabStop = false;
+            this.btnMinimize.TabIndex = 12;
             this.btnMinimize.Text = "Minimize to Tray";
             this.btnMinimize.UseVisualStyleBackColor = true;
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
@@ -98,8 +95,7 @@ namespace Watcher
             this.btnClearLog.Location = new System.Drawing.Point(544, 467);
             this.btnClearLog.Name = "btnClearLog";
             this.btnClearLog.Size = new System.Drawing.Size(120, 23);
-            this.btnClearLog.TabIndex = 6;
-            this.btnClearLog.TabStop = false;
+            this.btnClearLog.TabIndex = 11;
             this.btnClearLog.Text = "Clear Log";
             this.btnClearLog.UseVisualStyleBackColor = true;
             this.btnClearLog.Click += new System.EventHandler(this.btnClearLog_Click);
@@ -110,8 +106,7 @@ namespace Watcher
             this.btnExportLog.Location = new System.Drawing.Point(544, 438);
             this.btnExportLog.Name = "btnExportLog";
             this.btnExportLog.Size = new System.Drawing.Size(120, 23);
-            this.btnExportLog.TabIndex = 7;
-            this.btnExportLog.TabStop = false;
+            this.btnExportLog.TabIndex = 10;
             this.btnExportLog.Text = "Export Log";
             this.btnExportLog.UseVisualStyleBackColor = true;
             this.btnExportLog.Click += new System.EventHandler(this.btnExportLog_Click);
@@ -136,7 +131,7 @@ namespace Watcher
             this.dgWatchers.RowHeadersVisible = false;
             this.dgWatchers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgWatchers.Size = new System.Drawing.Size(526, 219);
-            this.dgWatchers.TabIndex = 8;
+            this.dgWatchers.TabIndex = 0;
             this.dgWatchers.TabStop = false;
             // 
             // dgLog
@@ -160,7 +155,7 @@ namespace Watcher
             this.dgLog.RowHeadersVisible = false;
             this.dgLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgLog.Size = new System.Drawing.Size(526, 282);
-            this.dgLog.TabIndex = 9;
+            this.dgLog.TabIndex = 7;
             this.dgLog.TabStop = false;
             // 
             // cbxShowNofitifcations
@@ -170,7 +165,7 @@ namespace Watcher
             this.cbxShowNofitifcations.Location = new System.Drawing.Point(544, 214);
             this.cbxShowNofitifcations.Name = "cbxShowNofitifcations";
             this.cbxShowNofitifcations.Size = new System.Drawing.Size(114, 17);
-            this.cbxShowNofitifcations.TabIndex = 10;
+            this.cbxShowNofitifcations.TabIndex = 6;
             this.cbxShowNofitifcations.Text = "Show Nofifications";
             this.cbxShowNofitifcations.UseVisualStyleBackColor = true;
             // 
@@ -180,8 +175,7 @@ namespace Watcher
             this.btnCopyFilePath.Location = new System.Drawing.Point(544, 409);
             this.btnCopyFilePath.Name = "btnCopyFilePath";
             this.btnCopyFilePath.Size = new System.Drawing.Size(120, 23);
-            this.btnCopyFilePath.TabIndex = 11;
-            this.btnCopyFilePath.TabStop = false;
+            this.btnCopyFilePath.TabIndex = 9;
             this.btnCopyFilePath.Text = "Copy File Path";
             this.btnCopyFilePath.UseVisualStyleBackColor = true;
             this.btnCopyFilePath.Click += new System.EventHandler(this.btnCopyFilePath_Click);
@@ -192,8 +186,7 @@ namespace Watcher
             this.btnCopyFolderpath.Location = new System.Drawing.Point(544, 70);
             this.btnCopyFolderpath.Name = "btnCopyFolderpath";
             this.btnCopyFolderpath.Size = new System.Drawing.Size(120, 23);
-            this.btnCopyFolderpath.TabIndex = 12;
-            this.btnCopyFolderpath.TabStop = false;
+            this.btnCopyFolderpath.TabIndex = 3;
             this.btnCopyFolderpath.Text = "Copy Folder Path";
             this.btnCopyFolderpath.UseVisualStyleBackColor = true;
             this.btnCopyFolderpath.Click += new System.EventHandler(this.btnCopyFolderPath_Click);
@@ -204,8 +197,7 @@ namespace Watcher
             this.btnGoToWatcherFolder.Location = new System.Drawing.Point(544, 99);
             this.btnGoToWatcherFolder.Name = "btnGoToWatcherFolder";
             this.btnGoToWatcherFolder.Size = new System.Drawing.Size(120, 23);
-            this.btnGoToWatcherFolder.TabIndex = 13;
-            this.btnGoToWatcherFolder.TabStop = false;
+            this.btnGoToWatcherFolder.TabIndex = 4;
             this.btnGoToWatcherFolder.Text = "Go to Folder";
             this.btnGoToWatcherFolder.UseVisualStyleBackColor = true;
             this.btnGoToWatcherFolder.Click += new System.EventHandler(this.btnGoToWatcherFolder_Click);
@@ -216,8 +208,7 @@ namespace Watcher
             this.btnGoToLogFolder.Location = new System.Drawing.Point(544, 380);
             this.btnGoToLogFolder.Name = "btnGoToLogFolder";
             this.btnGoToLogFolder.Size = new System.Drawing.Size(120, 23);
-            this.btnGoToLogFolder.TabIndex = 14;
-            this.btnGoToLogFolder.TabStop = false;
+            this.btnGoToLogFolder.TabIndex = 8;
             this.btnGoToLogFolder.Text = "Go to Folder";
             this.btnGoToLogFolder.UseVisualStyleBackColor = true;
             this.btnGoToLogFolder.Click += new System.EventHandler(this.btnGoToLogFolder_Click);
@@ -228,7 +219,7 @@ namespace Watcher
             this.btnFilters.Location = new System.Drawing.Point(544, 128);
             this.btnFilters.Name = "btnFilters";
             this.btnFilters.Size = new System.Drawing.Size(120, 23);
-            this.btnFilters.TabIndex = 15;
+            this.btnFilters.TabIndex = 5;
             this.btnFilters.Text = "Filters";
             this.btnFilters.UseVisualStyleBackColor = true;
             this.btnFilters.Click += new System.EventHandler(this.btnFilters_Click);

@@ -44,7 +44,7 @@
             this.lstExtensions.Location = new System.Drawing.Point(12, 42);
             this.lstExtensions.Name = "lstExtensions";
             this.lstExtensions.Size = new System.Drawing.Size(212, 264);
-            this.lstExtensions.TabIndex = 0;
+            this.lstExtensions.TabIndex = 1;
             // 
             // lblExtensions
             // 
@@ -52,7 +52,7 @@
             this.lblExtensions.Location = new System.Drawing.Point(9, 13);
             this.lblExtensions.Name = "lblExtensions";
             this.lblExtensions.Size = new System.Drawing.Size(168, 13);
-            this.lblExtensions.TabIndex = 1;
+            this.lblExtensions.TabIndex = 0;
             this.lblExtensions.Text = "Add file extensions to use as filters";
             // 
             // btnAdd
@@ -91,7 +91,7 @@
             this.btnClose.Location = new System.Drawing.Point(230, 283);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(120, 23);
-            this.btnClose.TabIndex = 5;
+            this.btnClose.TabIndex = 6;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -102,7 +102,7 @@
             this.btnSaveClose.Location = new System.Drawing.Point(230, 254);
             this.btnSaveClose.Name = "btnSaveClose";
             this.btnSaveClose.Size = new System.Drawing.Size(120, 23);
-            this.btnSaveClose.TabIndex = 6;
+            this.btnSaveClose.TabIndex = 5;
             this.btnSaveClose.Text = "Save && Close";
             this.btnSaveClose.UseVisualStyleBackColor = true;
             this.btnSaveClose.Click += new System.EventHandler(this.btnSaveClose_Click);
