@@ -116,40 +116,47 @@ namespace Watcher
 
         private void btnAddWatcher_Click(object sender, EventArgs e)
         {
-            CommonOpenFileDialog ofd = new CommonOpenFileDialog();
-            ofd.DefaultDirectory = "C:\\";
-            ofd.Title = "Navigate to the directory to add it to the watcher";
-            ofd.IsFolderPicker = true;
+            frmAddWatcher addWatcher = new frmAddWatcher();
 
-            if (ofd.ShowDialog() == CommonFileDialogResult.Ok)
+            if (addWatcher.ShowDialog() == DialogResult.OK)
             {
-                WatcherModel watcherModel = new WatcherModel();
-                bool exists = watcherModels.Any(x => x.DirectoryPath == ofd.FileName);
-
-                if (exists == false)
-                {
-                    watcherModel.DirectoryPath = ofd.FileName;
-
-                    var watcher = new FileSystemWatcher(watcherModel.DirectoryPath);
-                    watcher.Created += OnCreated;
-                    watcher.Deleted += OnDeleted;
-
-                    watcher.NotifyFilter = NotifyFilters.FileName;
-                    watcher.Filter = "";
-                    watcher.IncludeSubdirectories = true;
-                    watcher.EnableRaisingEvents = true;
-
-                    watcher.SynchronizingObject = this;
-
-                    watcherModel.FileWatcher = watcher;
-                    watcherModels.Add(watcherModel);
-
-                    dgWatchers.DataSource = null;
-                    dgWatchers.DataSource = watcherModels;
-                    FormatWatcherGrid();
-                    dgWatchers.ClearSelection();
-                }
+                MessageBox.Show("Hello");
             }
+
+            //CommonOpenFileDialog ofd = new CommonOpenFileDialog();
+            //ofd.DefaultDirectory = "C:\\";
+            //ofd.Title = "Navigate to the directory to add it to the watcher";
+            //ofd.IsFolderPicker = true;
+
+            //if (ofd.ShowDialog() == CommonFileDialogResult.Ok)
+            //{
+            //    WatcherModel watcherModel = new WatcherModel();
+            //    bool exists = watcherModels.Any(x => x.DirectoryPath == ofd.FileName);
+
+            //    if (exists == false)
+            //    {
+            //        watcherModel.DirectoryPath = ofd.FileName;
+
+            //        var watcher = new FileSystemWatcher(watcherModel.DirectoryPath);
+            //        watcher.Created += OnCreated;
+            //        watcher.Deleted += OnDeleted;
+
+            //        watcher.NotifyFilter = NotifyFilters.FileName;
+            //        watcher.Filter = "";
+            //        watcher.IncludeSubdirectories = true;
+            //        watcher.EnableRaisingEvents = true;
+
+            //        watcher.SynchronizingObject = this;
+
+            //        watcherModel.FileWatcher = watcher;
+            //        watcherModels.Add(watcherModel);
+
+            //        dgWatchers.DataSource = null;
+            //        dgWatchers.DataSource = watcherModels;
+            //        FormatWatcherGrid();
+            //        dgWatchers.ClearSelection();
+            //    }
+            //}
         }
 
         private void btnRemoveWatcher_Click(object sender, EventArgs e)
@@ -362,5 +369,6 @@ namespace Watcher
     {
         public string DirectoryPath { get; set; }
         public FileSystemWatcher FileWatcher { get; set; }
+        public string Extension { get; set; }
     }
 }

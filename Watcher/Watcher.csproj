@@ -58,6 +58,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAddWatcher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddWatcher.Designer.cs">
+      <DependentUpon>frmAddWatcher.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmInput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAddWatcher.resx">
+      <DependentUpon>frmAddWatcher.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmInput.resx">
       <DependentUpon>frmInput.cs</DependentUpon>
     </EmbeddedResource>
