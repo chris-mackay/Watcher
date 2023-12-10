@@ -122,7 +122,8 @@ namespace Watcher
 
             if (addWatcher.ShowDialog() == DialogResult.OK)
             {
-                bool exists = watcherModels.Any(x => x.DirectoryPath == addWatcher.txtDirectory.Text && x.Extension == addWatcher.cbExtensions.SelectedItem.ToString());
+                bool exists = watcherModels.Any(x => x.DirectoryPath == addWatcher.txtDirectory.Text 
+                                                  && x.Extension == addWatcher.cbExtensions.Text);
 
                 if (!exists)
                 {
@@ -342,10 +343,10 @@ namespace Watcher
             }
         }
 
-        private void btnSettings_Click(object sender, EventArgs e)
+        private void btnFilters_Click(object sender, EventArgs e)
         {
-            frmSettings settings = new frmSettings();
-            settings.ShowDialog();
+            frmFilters filters = new frmFilters();
+            filters.ShowDialog();
         }
     }
 

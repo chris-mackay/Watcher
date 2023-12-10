@@ -45,7 +45,7 @@ namespace Watcher
             this.btnCopyFolderpath = new System.Windows.Forms.Button();
             this.btnGoToWatcherFolder = new System.Windows.Forms.Button();
             this.btnGoToLogFolder = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
+            this.btnFilters = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgWatchers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLog)).BeginInit();
             this.SuspendLayout();
@@ -222,23 +222,23 @@ namespace Watcher
             this.btnGoToLogFolder.UseVisualStyleBackColor = true;
             this.btnGoToLogFolder.Click += new System.EventHandler(this.btnGoToLogFolder_Click);
             // 
-            // btnSettings
+            // btnFilters
             // 
-            this.btnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSettings.Location = new System.Drawing.Point(544, 128);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(120, 23);
-            this.btnSettings.TabIndex = 15;
-            this.btnSettings.Text = "Settings";
-            this.btnSettings.UseVisualStyleBackColor = true;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            this.btnFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFilters.Location = new System.Drawing.Point(544, 128);
+            this.btnFilters.Name = "btnFilters";
+            this.btnFilters.Size = new System.Drawing.Size(120, 23);
+            this.btnFilters.TabIndex = 15;
+            this.btnFilters.Text = "Filters";
+            this.btnFilters.UseVisualStyleBackColor = true;
+            this.btnFilters.Click += new System.EventHandler(this.btnFilters_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 531);
-            this.Controls.Add(this.btnSettings);
+            this.Controls.Add(this.btnFilters);
             this.Controls.Add(this.btnGoToLogFolder);
             this.Controls.Add(this.btnGoToWatcherFolder);
             this.Controls.Add(this.btnCopyFolderpath);
@@ -279,7 +279,7 @@ namespace Watcher
         private System.Windows.Forms.Button btnCopyFolderpath;
         private System.Windows.Forms.Button btnGoToWatcherFolder;
         private Button btnGoToLogFolder;
-        private Button btnSettings;
+        private Button btnFilters;
     }
 }
 

@@ -37,6 +37,7 @@
             this.btnBrowse = new System.Windows.Forms.Button();
             this.lblExtension = new System.Windows.Forms.Label();
             this.ckbNoFilter = new System.Windows.Forms.CheckBox();
+            this.btnFilters = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -52,6 +53,7 @@
             // btnAdd
             // 
             this.btnAdd.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnAdd.Enabled = false;
             this.btnAdd.Location = new System.Drawing.Point(208, 180);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
@@ -61,6 +63,8 @@
             // 
             // txtDirectory
             // 
+            this.txtDirectory.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtDirectory.Enabled = false;
             this.txtDirectory.Location = new System.Drawing.Point(12, 45);
             this.txtDirectory.Name = "txtDirectory";
             this.txtDirectory.ReadOnly = true;
@@ -71,7 +75,7 @@
             // 
             this.cbExtensions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbExtensions.FormattingEnabled = true;
-            this.cbExtensions.Location = new System.Drawing.Point(12, 135);
+            this.cbExtensions.Location = new System.Drawing.Point(12, 122);
             this.cbExtensions.Name = "cbExtensions";
             this.cbExtensions.Size = new System.Drawing.Size(138, 21);
             this.cbExtensions.TabIndex = 3;
@@ -98,16 +102,16 @@
             // lblExtension
             // 
             this.lblExtension.AutoSize = true;
-            this.lblExtension.Location = new System.Drawing.Point(9, 95);
+            this.lblExtension.Location = new System.Drawing.Point(9, 97);
             this.lblExtension.Name = "lblExtension";
-            this.lblExtension.Size = new System.Drawing.Size(141, 26);
+            this.lblExtension.Size = new System.Drawing.Size(119, 13);
             this.lblExtension.TabIndex = 6;
-            this.lblExtension.Text = "Select a file type to watch\r\nThis list is created in settings";
+            this.lblExtension.Text = "Select a file type to filter";
             // 
             // ckbNoFilter
             // 
             this.ckbNoFilter.AutoSize = true;
-            this.ckbNoFilter.Location = new System.Drawing.Point(12, 167);
+            this.ckbNoFilter.Location = new System.Drawing.Point(156, 126);
             this.ckbNoFilter.Name = "ckbNoFilter";
             this.ckbNoFilter.Size = new System.Drawing.Size(62, 17);
             this.ckbNoFilter.TabIndex = 7;
@@ -115,11 +119,22 @@
             this.ckbNoFilter.UseVisualStyleBackColor = true;
             this.ckbNoFilter.CheckedChanged += new System.EventHandler(this.ckbNoFilter_CheckedChanged);
             // 
+            // btnFilters
+            // 
+            this.btnFilters.Location = new System.Drawing.Point(12, 180);
+            this.btnFilters.Name = "btnFilters";
+            this.btnFilters.Size = new System.Drawing.Size(75, 23);
+            this.btnFilters.TabIndex = 8;
+            this.btnFilters.Text = "Filters";
+            this.btnFilters.UseVisualStyleBackColor = true;
+            this.btnFilters.Click += new System.EventHandler(this.btnFilters_Click);
+            // 
             // frmAddWatcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(376, 215);
+            this.Controls.Add(this.btnFilters);
             this.Controls.Add(this.ckbNoFilter);
             this.Controls.Add(this.lblExtension);
             this.Controls.Add(this.btnBrowse);
@@ -152,5 +167,6 @@
         public System.Windows.Forms.TextBox txtDirectory;
         public System.Windows.Forms.ComboBox cbExtensions;
         public System.Windows.Forms.CheckBox ckbNoFilter;
+        private System.Windows.Forms.Button btnFilters;
     }
 }

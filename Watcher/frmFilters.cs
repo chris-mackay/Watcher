@@ -13,11 +13,11 @@ using Watcher.Properties;
 
 namespace Watcher
 {
-    public partial class frmSettings : Form
+    public partial class frmFilters : Form
     {
-        List<string> extensions;
+        public List<string> Extensions;
 
-        public frmSettings()
+        public frmFilters()
         {
             InitializeComponent();
         }
@@ -26,15 +26,15 @@ namespace Watcher
         {
             if (Settings.Default.Extensions != null && Settings.Default.Extensions != string.Empty)
             {
-                extensions = Helpers.ConvertCSVToList(Settings.Default.Extensions);
+                Extensions = Helpers.ConvertCSVToList(Settings.Default.Extensions);
                 lstExtensions.DataSource = null;
-                lstExtensions.DataSource = extensions;
+                lstExtensions.DataSource = Extensions;
             }
             else
             {
-                extensions = new List<string>();
+                Extensions = new List<string>();
                 lstExtensions.DataSource = null;
-                lstExtensions.DataSource = extensions;
+                lstExtensions.DataSource = Extensions;
             }
         }
 
@@ -46,12 +46,12 @@ namespace Watcher
             {
                 string ext = input.txtExtension.Text;
 
-                if (ext != string.Empty && !extensions.Contains(ext))
+                if (ext != string.Empty && !Extensions.Contains(ext))
                 {
-                    extensions.Add(ext);
+                    Extensions.Add(ext);
 
                     lstExtensions.DataSource = null;
-                    lstExtensions.DataSource = extensions;
+                    lstExtensions.DataSource = Extensions;
                 }
             }
         }
@@ -69,10 +69,10 @@ namespace Watcher
                 if (td.Show() == TaskDialogResult.Yes)
                 {
                     string ext = lstExtensions.SelectedItem as string;
-                    extensions.Remove(ext);
+                    Extensions.Remove(ext);
 
                     lstExtensions.DataSource = null;
-                    lstExtensions.DataSource = extensions; 
+                    lstExtensions.DataSource = Extensions; 
                 }
             }
         }
@@ -86,18 +86,23 @@ namespace Watcher
 
             if (td.Show() == TaskDialogResult.Yes)
             {
-                extensions.Clear();
+                Extensions.Clear();
                 lstExtensions.DataSource = null;
-                lstExtensions.DataSource = extensions; 
+                lstExtensions.DataSource = Extensions; 
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnSaveClose_Click(object sender, EventArgs e)
         {
             if (lstExtensions.Items.Count > 0)
             {
-                Settings.Default.Extensions = Helpers.ConvertListToCSV(extensions);
+                Settings.Default.Extensions = Helpers.ConvertListToCSV(Extensions);
                 Settings.Default.Save(); 
+            }
+            else
+            {
+                Settings.Default.Extensions = "";
+                Settings.Default.Save();
             }
         }
 

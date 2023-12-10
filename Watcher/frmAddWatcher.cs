@@ -30,6 +30,8 @@ namespace Watcher
             {
                 txtDirectory.Text = ofd.FileName;
             }
+
+            EnableAddButton();
         }
 
         private void frmAddWatcher_Load(object sender, EventArgs e)
@@ -60,7 +62,49 @@ namespace Watcher
             else
             {
                 cbExtensions.Enabled = true;
-                cbExtensions.SelectedIndex = 0;
+                if (cbExtensions.Items.Count > 0) cbExtensions.SelectedIndex = 0;
+            }
+
+            EnableAddButton();
+        }
+
+        private void btnFilters_Click(object sender, EventArgs e)
+        {
+            frmFilters filters = new frmFilters();
+
+            if (filters.ShowDialog() == DialogResult.OK)
+            {
+                cbExtensions.DataSource = null;
+                cbExtensions.DataSource = filters.Extensions;
+            }
+
+            EnableAddButton();
+        }
+
+        private void EnableAddButton()
+        {
+            bool validFilter = false;
+            bool directoryProvided = false;
+
+            if (txtDirectory.Text == string.Empty) directoryProvided = false; else directoryProvided = true;
+            
+            if ((cbExtensions.SelectedIndex == -1 && ckbNoFilter.Checked)
+                || (cbExtensions.SelectedIndex != -1 && !ckbNoFilter.Checked && cbExtensions.Items.Count > 0))
+            {
+                validFilter = true;
+            }
+            else
+            {
+                validFilter = false;
+            }
+
+            if (validFilter && directoryProvided)
+            {
+                btnAdd.Enabled = true;
+            }
+            else
+            {
+                btnAdd.Enabled = false;
             }
         }
     }
