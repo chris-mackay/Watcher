@@ -7,7 +7,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
+using Watcher.Properties;
 
 namespace Watcher
 {
@@ -22,7 +24,18 @@ namespace Watcher
 
         private void frmSettings_Load(object sender, EventArgs e)
         {
-            extensions = new List<string>();
+            if (Settings.Default.Extensions != null && Settings.Default.Extensions != string.Empty)
+            {
+                extensions = ConvertCSVToList(Settings.Default.Extensions);
+                lstExtensions.DataSource = null;
+                lstExtensions.DataSource = extensions;
+            }
+            else
+            {
+                extensions = new List<string>();
+                lstExtensions.DataSource = null;
+                lstExtensions.DataSource = extensions;
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -81,12 +94,38 @@ namespace Watcher
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
+            if (lstExtensions.Items.Count > 0)
+            {
+                Settings.Default.Extensions = ConvertListToCSV(extensions);
+                Settings.Default.Save(); 
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private string ConvertListToCSV(List<string> list)
+        {
+            string csv = string.Empty;
+
+            StringBuilder sb = new StringBuilder();
+            list.ForEach(x => sb.Append($"{x},"));
+
+            csv = sb.ToString().TrimEnd(',');
+
+            return csv;
+        }
+
+        private List<string> ConvertCSVToList(string csv)
+        {
+            List<string> list = new List<string>();
+            string[] line = csv.Split(',');
+
+            foreach (string s in line) { list.Add(s); }
+
+            return list;
         }
     }
 }
