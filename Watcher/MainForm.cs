@@ -32,6 +32,7 @@ namespace Watcher
         private void FormatLogGrid()
         {
             dgLog.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgLog.Columns[3].Visible = false;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -45,21 +46,29 @@ namespace Watcher
         {
             bool showNotifications = cbxShowNofitifcations.Checked;
 
-            if (showNotifications)
-            {
-                notifyIcon.Text = "Watcher";
-                notifyIcon.Visible = true;
-                notifyIcon.BalloonTipTitle = "File added";
-                notifyIcon.BalloonTipText = e.FullPath;
-                notifyIcon.ShowBalloonTip(1000); 
-            }
-
             LogEntryModel logEntry = new LogEntryModel();
             logEntry.Alert = "Added";
             logEntry.EntryTime = DateTime.Now;
             logEntry.FilePath = e.FullPath;
+            logEntry.FileLastWriteTime = File.GetLastWriteTime(e.FullPath);
 
-            logEntryModels.Add(logEntry);
+            bool exists = logEntryModels.Any(x => x.Alert == logEntry.Alert
+                                                  && x.FileLastWriteTime == logEntry.FileLastWriteTime
+                                                  && x.FilePath == logEntry.FilePath);
+            if (!exists)
+            {
+                logEntryModels.Add(logEntry);
+
+                if (showNotifications)
+                {
+                    notifyIcon.Text = "Watcher";
+                    notifyIcon.Visible = true;
+                    notifyIcon.BalloonTipTitle = "File added";
+                    notifyIcon.BalloonTipText = e.FullPath;
+                    notifyIcon.ShowBalloonTip(1000);
+                } 
+            }
+
             dgLog.DataSource = null;
             dgLog.DataSource = logEntryModels;
             FormatLogGrid();
@@ -70,21 +79,29 @@ namespace Watcher
         {
             bool showNotifications = cbxShowNofitifcations.Checked;
 
-            if (showNotifications)
-            {
-                notifyIcon.Text = "Watcher";
-                notifyIcon.Visible = true;
-                notifyIcon.BalloonTipTitle = "File deleted";
-                notifyIcon.BalloonTipText = e.FullPath;
-                notifyIcon.ShowBalloonTip(1000); 
-            }
-
             LogEntryModel logEntry = new LogEntryModel();
             logEntry.Alert = "Deleted";
             logEntry.EntryTime = DateTime.Now;
             logEntry.FilePath = e.FullPath;
+            logEntry.FileLastWriteTime = File.GetLastWriteTime(e.FullPath);
 
-            logEntryModels.Add(logEntry);
+            bool exists = logEntryModels.Any(x => x.Alert == logEntry.Alert
+                                                  && x.FileLastWriteTime == logEntry.FileLastWriteTime
+                                                  && x.FilePath == logEntry.FilePath);
+            if (!exists)
+            {
+                logEntryModels.Add(logEntry);
+
+                if (showNotifications)
+                {
+                    notifyIcon.Text = "Watcher";
+                    notifyIcon.Visible = true;
+                    notifyIcon.BalloonTipTitle = "File deleted";
+                    notifyIcon.BalloonTipText = e.FullPath;
+                    notifyIcon.ShowBalloonTip(1000);
+                } 
+            }
+
             dgLog.DataSource = null;
             dgLog.DataSource = logEntryModels;
             FormatLogGrid();
@@ -355,6 +372,7 @@ namespace Watcher
         public string Alert { get; set; }
         public DateTime EntryTime { get; set; }
         public string FilePath { get; set; }
+        public DateTime FileLastWriteTime { get; set; }
     }
 
     class WatcherModel
