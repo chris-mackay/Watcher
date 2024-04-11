@@ -1,5 +1,5 @@
 # Watcher
-A simple Windows application for monitoring files in directories
+An application for monitoring file activity in specified directories 
 
 ![Watcher](Readme/watcher.png?raw=true "Watcher")
 
