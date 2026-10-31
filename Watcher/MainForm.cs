@@ -42,13 +42,16 @@ namespace Watcher
             mainForm = this;
         }
 
-        private void OnCreated(object sender, FileSystemEventArgs e)
+        private void OnChanged(object sender, FileSystemEventArgs e)
         {
             bool showNotifications = cbxShowNofitifcations.Checked;
+            
+            DateTime entryTime = DateTime.Now;
+            string formattedEntryTime = entryTime.ToString("MM/dd/yyyy HH:mm:ss");
 
             LogEntryModel logEntry = new LogEntryModel();
-            logEntry.Alert = "Added";
-            logEntry.EntryTime = DateTime.Now;
+            logEntry.Alert = e.ChangeType.ToString();
+            logEntry.EntryTime = formattedEntryTime;
             logEntry.FilePath = e.FullPath;
             logEntry.FileLastWriteTime = File.GetLastWriteTime(e.FullPath);
 
@@ -63,43 +66,10 @@ namespace Watcher
                 {
                     notifyIcon.Text = "Watcher";
                     notifyIcon.Visible = true;
-                    notifyIcon.BalloonTipTitle = "File added";
+                    notifyIcon.BalloonTipTitle = logEntry.Alert;
                     notifyIcon.BalloonTipText = e.FullPath;
                     notifyIcon.ShowBalloonTip(1000);
-                } 
-            }
-
-            dgLog.DataSource = null;
-            dgLog.DataSource = logEntryModels;
-            FormatLogGrid();
-            dgLog.ClearSelection();
-        }
-
-        private void OnDeleted(object sender, FileSystemEventArgs e)
-        {
-            bool showNotifications = cbxShowNofitifcations.Checked;
-
-            LogEntryModel logEntry = new LogEntryModel();
-            logEntry.Alert = "Deleted";
-            logEntry.EntryTime = DateTime.Now;
-            logEntry.FilePath = e.FullPath;
-            logEntry.FileLastWriteTime = File.GetLastWriteTime(e.FullPath);
-
-            bool exists = logEntryModels.Any(x => x.Alert == logEntry.Alert
-                                                  && x.FileLastWriteTime == logEntry.FileLastWriteTime
-                                                  && x.FilePath == logEntry.FilePath);
-            if (!exists)
-            {
-                logEntryModels.Add(logEntry);
-
-                if (showNotifications)
-                {
-                    notifyIcon.Text = "Watcher";
-                    notifyIcon.Visible = true;
-                    notifyIcon.BalloonTipTitle = "File deleted";
-                    notifyIcon.BalloonTipText = e.FullPath;
-                    notifyIcon.ShowBalloonTip(1000);
-                } 
+                }
             }
 
             dgLog.DataSource = null;
@@ -151,10 +121,20 @@ namespace Watcher
                     watcherModel.Extension = addWatcher.cbExtensions.Text;
 
                     var watcher = new FileSystemWatcher(watcherModel.DirectoryPath);
-                    watcher.Created += OnCreated;
-                    watcher.Deleted += OnDeleted;
+                    watcher.Created += OnChanged;
+                    watcher.Deleted += OnChanged;
+                    watcher.Changed += OnChanged;
+                    watcher.Renamed += OnChanged;
 
-                    watcher.NotifyFilter = NotifyFilters.FileName;
+                    watcher.NotifyFilter = NotifyFilters.Attributes
+                                         | NotifyFilters.CreationTime
+                                         | NotifyFilters.DirectoryName
+                                         | NotifyFilters.FileName
+                                         | NotifyFilters.LastAccess
+                                         | NotifyFilters.LastWrite
+                                         | NotifyFilters.Security
+                                         | NotifyFilters.Size;
+
                     watcher.Filter = $"*{watcherModel.Extension}";
                     watcher.IncludeSubdirectories = true;
                     watcher.EnableRaisingEvents = true;
@@ -370,7 +350,7 @@ namespace Watcher
     class LogEntryModel
     {
         public string Alert { get; set; }
-        public DateTime EntryTime { get; set; }
+        public string EntryTime { get; set; }
         public string FilePath { get; set; }
         public DateTime FileLastWriteTime { get; set; }
     }
