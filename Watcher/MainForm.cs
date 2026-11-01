@@ -181,10 +181,13 @@ namespace Watcher
         {
             if (logEntryModels.Count > 0)
             {
+                DateTime currentTime = DateTime.Now;
+                string formattedCurrentTime = currentTime.ToString("MM-dd-yyyy_HH-mm-ss");
+
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Filter = "csv files (*.csv)|*.csv";
                 sfd.Title = "Specify file to save the log";
-                sfd.FileName = "WatcherLog";
+                sfd.FileName = $"WatcherLog_{formattedCurrentTime}";
                 sfd.DefaultExt = ".csv";
                 sfd.InitialDirectory = "C:\\";
                 sfd.AddExtension = true;
@@ -208,7 +211,11 @@ namespace Watcher
 
             foreach (LogEntryModel model in logEntryModels)
             {
-                string entry = $"{model.Alert},{model.EntryTime},{model.FilePath}";
+                string entry = $"{model.EntryId}," +
+                               $"{model.WatcherId}," +
+                               $"{model.Alert}," +
+                               $"{model.EntryTime}," +
+                               $"{model.FilePath}";
                 sw.WriteLine(entry);
             }
 
