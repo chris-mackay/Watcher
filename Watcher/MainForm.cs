@@ -22,19 +22,6 @@ namespace Watcher
             InitializeComponent();
         }
 
-        private void FormatWatcherGrid()
-        {
-            dgWatchers.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgWatchers.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgWatchers.Columns[2].Visible = false;
-        }
-
-        private void FormatLogGrid()
-        {
-            dgLog.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgLog.Columns[3].Visible = false;
-        }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             watcherModels = new BindingList<WatcherModel>();
@@ -45,11 +32,23 @@ namespace Watcher
         private void OnChanged(object sender, FileSystemEventArgs e)
         {
             bool showNotifications = cbxShowNofitifcations.Checked;
-            
+            FileSystemWatcher watcher = (FileSystemWatcher)sender;
+
             DateTime entryTime = DateTime.Now;
             string formattedEntryTime = entryTime.ToString("MM/dd/yyyy HH:mm:ss");
 
             LogEntryModel logEntry = new LogEntryModel();
+            logEntry.EntryId = Guid.NewGuid();
+
+            // TODO: Look up in the list of watcherModels and match the FileSystemWatcher with the sender watcher, so we can get the WatcherId
+            foreach (WatcherModel watcherModel in watcherModels)
+            {
+                if (watcherModel.FileWatcher == watcher)
+                {
+                    logEntry.WatcherId = watcherModel.WatcherId;
+                }
+            }
+
             logEntry.Alert = e.ChangeType.ToString();
             logEntry.EntryTime = formattedEntryTime;
             logEntry.FilePath = e.FullPath;
@@ -117,6 +116,7 @@ namespace Watcher
                     bool noFilter = addWatcher.ckbNoFilter.Checked;
 
                     WatcherModel watcherModel = new WatcherModel();
+                    watcherModel.WatcherId = Guid.NewGuid();
                     watcherModel.DirectoryPath = addWatcher.txtDirectory.Text;
                     watcherModel.Extension = addWatcher.cbExtensions.Text;
 
@@ -345,10 +345,45 @@ namespace Watcher
             frmFilters filters = new frmFilters();
             filters.ShowDialog();
         }
+
+        private void FormatLogGrid()
+        {
+            dgLog.ColumnHeadersVisible = true;
+
+            dgLog.Columns[0].HeaderText = "Entry Id";
+            dgLog.Columns[1].HeaderText = "Watcher Id";
+            dgLog.Columns[2].HeaderText = "Change Type";
+            dgLog.Columns[3].HeaderText = "Entry Time";
+            dgLog.Columns[4].HeaderText = "Filepath";
+
+            dgLog.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgLog.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgLog.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgLog.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgLog.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgLog.Columns[5].Visible = false;
+        }
+
+        private void FormatWatcherGrid()
+        {
+            dgWatchers.ColumnHeadersVisible = true;
+
+            dgWatchers.Columns[0].HeaderText = "Watcher Id";
+            dgWatchers.Columns[1].HeaderText = "Ext";
+            dgWatchers.Columns[2].HeaderText = "Directory";
+            dgWatchers.Columns[3].HeaderText = "Filewatcher";
+
+            dgWatchers.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgWatchers.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgWatchers.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgWatchers.Columns[3].Visible = false;
+        }
     }
 
     class LogEntryModel
     {
+        public Guid EntryId { get; set; }
+        public Guid WatcherId { get; set; }
         public string Alert { get; set; }
         public string EntryTime { get; set; }
         public string FilePath { get; set; }
@@ -357,6 +392,7 @@ namespace Watcher
 
     class WatcherModel
     {
+        public Guid WatcherId { get; set; }
         public string Extension { get; set; }
         public string DirectoryPath { get; set; }
         public FileSystemWatcher FileWatcher { get; set; }
