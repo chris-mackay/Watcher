@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
@@ -27,32 +28,43 @@ namespace Watcher
             watcherModels = new BindingList<WatcherModel>();
             logEntryModels = new BindingList<LogEntryModel>();
             mainForm = this;
+
+            dgLog.DataSource = logEntryModels;
+            FormatLogGrid();
         }
 
-        private void OnChanged(object sender, FileSystemEventArgs e)
+        private Guid GetWatcherIdFromFileSystemWatcher(FileSystemWatcher watcher)
         {
-            bool showNotifications = cbxShowNofitifcations.Checked;
-            FileSystemWatcher watcher = (FileSystemWatcher)sender;
-
-            DateTime entryTime = DateTime.Now;
-            string formattedEntryTime = entryTime.ToString("MM/dd/yyyy HH:mm:ss");
-
-            LogEntryModel logEntry = new LogEntryModel();
-            logEntry.EntryId = Guid.NewGuid();
-
-            // TODO: Look up in the list of watcherModels and match the FileSystemWatcher with the sender watcher, so we can get the WatcherId
             foreach (WatcherModel watcherModel in watcherModels)
             {
                 if (watcherModel.FileWatcher == watcher)
                 {
-                    logEntry.WatcherId = watcherModel.WatcherId;
+                    return watcherModel.WatcherId;
                 }
             }
 
-            logEntry.Alert = e.ChangeType.ToString();
+            return Guid.Empty;
+        }
+
+        private async void OnChanged(object sender, FileSystemEventArgs e)
+        {
+            bool showNotifications = cbxShowNofitifcations.Checked;
+            FileSystemWatcher watcher = (FileSystemWatcher)sender;
+            string filePath = e.FullPath;
+
+            DateTime entryTime = DateTime.Now;
+            string formattedEntryTime = entryTime.ToString("MM/dd/yyyy HH:mm:ss");
+            Guid watcherId = GetWatcherIdFromFileSystemWatcher(watcher);
+            string alert = e.ChangeType.ToString();
+            DateTime fileLastWriteTime = await Task.Run(() => File.GetLastWriteTime(filePath));
+
+            LogEntryModel logEntry = new LogEntryModel();
+            logEntry.EntryId = Guid.NewGuid();
+            logEntry.WatcherId = watcherId;
+            logEntry.Alert = alert;
             logEntry.EntryTime = formattedEntryTime;
-            logEntry.FilePath = e.FullPath;
-            logEntry.FileLastWriteTime = File.GetLastWriteTime(e.FullPath);
+            logEntry.FilePath = filePath;
+            logEntry.FileLastWriteTime = fileLastWriteTime;
 
             bool exists = logEntryModels.Any(x => x.Alert == logEntry.Alert
                                                   && x.FileLastWriteTime == logEntry.FileLastWriteTime
@@ -66,15 +78,12 @@ namespace Watcher
                     notifyIcon.Text = "Watcher";
                     notifyIcon.Visible = true;
                     notifyIcon.BalloonTipTitle = logEntry.Alert;
-                    notifyIcon.BalloonTipText = e.FullPath;
+                    notifyIcon.BalloonTipText = filePath;
                     notifyIcon.ShowBalloonTip(1000);
                 }
-            }
 
-            dgLog.DataSource = null;
-            dgLog.DataSource = logEntryModels;
-            FormatLogGrid();
-            dgLog.ClearSelection();
+                dgLog.ClearSelection();
+            }
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -97,9 +106,6 @@ namespace Watcher
             dgWatchers.DataSource = watcherModels;
             FormatWatcherGrid();
 
-            dgLog.DataSource = null;
-            dgLog.DataSource = logEntryModels;
-            FormatLogGrid();
         }
 
         private void btnAddWatcher_Click(object sender, EventArgs e)
@@ -249,7 +255,6 @@ namespace Watcher
                         ExportLog(sfd.FileName);
 
                         logEntryModels.Clear();
-                        dgLog.DataSource = null;
 
                         TaskDialog taskDialog = new TaskDialog();
                         taskDialog.Caption = "Watcher";
@@ -261,7 +266,6 @@ namespace Watcher
                 else if (result == TaskDialogResult.No)
                 {
                     logEntryModels.Clear();
-                    dgLog.DataSource = null;
                 } 
             }
         }
